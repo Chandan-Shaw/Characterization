@@ -16,7 +16,12 @@
   
   The Coulomb is a large unit of charge. 1C = 1 / 1.602 * 10^-19 =  6.24 * 10^-18  
 
+  ### 1.2 Current
+  The electric current due to the flow of electronic charge in a conductor.
 
+  Electric Current is the time rate of change of Charge,measured in **Ampere** (A).
+
+  Mathematically - i = dq/dt   (1 Ampere = 1 Coulomb/1Second)
   
 - ## 1. CMOS
   
