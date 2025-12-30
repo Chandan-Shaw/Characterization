@@ -15,4 +15,5 @@
   It Uses two types OF MOSFET Operation:
   - **PMOS(Positive Type)**
   - **NMOS(Negative Type)**
+    
   They work together in a CMOS: - When one is **ON** then Other is **OFF.**
