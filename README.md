@@ -43,6 +43,14 @@
   p = vi , is a time varing quantity and is called **Instantaneous Power.**
 
   The power absorbed or supplied by an element is the product of the voltage across the element and the current          through it.
+
+  ### 1.5 Energy
+  Energy is the capacity to do work, measured in **Joules (J).**
+
+  Energy is an electric circuit is defined as the total power consumption in a period (From time t0 to t)
+
+  Mathematically , w = ∫<sub>t0</sub><sup>t</sup>
+
   
 - ## 1. CMOS
   
