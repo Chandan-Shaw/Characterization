@@ -51,7 +51,13 @@
 
   Mathematically , w = $\int_{t_0}^{t} p \ dt$ = $\int_{t_0}^{t} vi \ dt$
 
+  The electric power utility companies measures energy in Watt-hour (Wh) , Where 1 Wh = 3600 J.
 
+  ### 1.6 Resistor
+  A resistor is an passive electrical component that opposes the flow of electric current and is mainly used to control
+  voltage/current, and set bias conditions in circuits.
+  **Used of Resistor**
+  
   
 - ## 1. CMOS
   
