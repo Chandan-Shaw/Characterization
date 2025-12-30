@@ -28,6 +28,10 @@
   ### 1.3 Voltage
   Voltage is the energy required to move a unit charge from a reference point(-) to another point (+), measured in
   **Volts (V).**
+
+  Voltage between two pont a & b is as:  Vab = dw/dq   ( 1 Volt = 1 Joule/Coulomb )
+
+  **Vab = -Vba** (Voltage drops from a to b is equivalent to voltage rise from b to a )
   
 - ## 1. CMOS
   
