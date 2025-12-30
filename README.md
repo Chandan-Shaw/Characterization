@@ -8,3 +8,6 @@
 --------------------------------------------------------------------------------------------------------
 ## Content
 - **1. CMOS**
+  # What Is CMOS ?
+  CMOS (Complementary Metal–Oxide–Semiconductor) is a technology used to build most modern digital chips — like
+  processors, memory, and logic circuits.
