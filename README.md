@@ -11,3 +11,8 @@
   ### What Is CMOS ?
   CMOS (Complementary Metal–Oxide–Semiconductor) is a technology used to build most modern digital chips — like
   processors, memory, and logic circuits.
+
+  It Uses two types OF MOSFET Operation:
+  - **PMOS(Positive Type)**
+  - **NMOS(Negative Type)**
+  They work together in a CMOS: - When one is **ON** then Other is **OFF.**
