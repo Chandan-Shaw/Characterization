@@ -49,7 +49,8 @@
 
   Energy is an electric circuit is defined as the total power consumption in a period (From time t0 to t)
 
-  Mathematically , w = ∫<sub>t0</sub><sup>t</sup>
+  Mathematically , w = $\int_{t_0}^{t} p \, dt$
+
 
   
 - ## 1. CMOS
