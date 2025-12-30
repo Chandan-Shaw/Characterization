@@ -12,6 +12,9 @@
   CMOS (Complementary Metal–Oxide–Semiconductor) is a technology used to build most modern digital chips — like
   processors, memory, and logic circuits.
 
+  CMOS is a semiconductor technology that uses complementary NMOS and PMOS transistors to build low-power, high-speed
+  digital and analog circuits.
+  
   It Uses two types OF MOSFET Operation:
   - **PMOS(Positive Type)**
   - **NMOS(Negative Type)**
