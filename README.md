@@ -24,6 +24,10 @@
   Mathematically - i = dq/dt
 
   ( 1 Ampere = 1 Coulomb/1Second )
+
+  ### 1.3 Voltage
+  Voltage is the energy required to move a unit charge from a reference point(-) to another point (+), measured in
+  **Volts (V).**
   
 - ## 1. CMOS
   
