@@ -21,7 +21,9 @@
 
   Electric Current is the time rate of change of Charge,measured in **Ampere** (A).
 
-  Mathematically - i = dq/dt   (1 Ampere = 1 Coulomb/1Second)
+  Mathematically - i = dq/dt
+
+  ( 1 Ampere = 1 Coulomb/1Second )
   
 - ## 1. CMOS
   
