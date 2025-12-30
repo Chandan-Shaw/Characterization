@@ -4,7 +4,7 @@
 ## What Is Analog Characterization ?
 
 - Analog IC (Integrated Circuit) Characterization is the process of evaluating and measuring the electrical performance of an analog circuit under various conditions. This involves testing key parameters such as gain, offset, bandwidth, noise, power consumption, input/output impedance, temperature stability, and process variation sensitivity.
-- 
+
 --------------------------------------------------------------------------------------------------------
 ## Content
 - ## 1. Basic Concept & Linear Element
@@ -32,6 +32,17 @@
   Voltage between two pont a & b is as:  Vab = dw/dq   ( 1 Volt = 1 Joule/Coulomb )
 
   **Vab = -Vba** (Voltage drops from a to b is equivalent to voltage rise from b to a )
+
+  ### 1.4 Power
+  Power is the time rate of expanding or absorbing energy, measured is **Watts (W).**
+
+  Mathematically , p = dw/dt  (1 Watt = 1 Joule/1Second)
+
+  where p is **power**, w is **energy** in Joules and t is the **time** in seconds.
+
+  p = vi , is a time varing quantity and is called **Instantaneous Power.**
+
+  The power absorbed or supplied by an element is the product of the voltage across the element and the current          through it.
   
 - ## 1. CMOS
   
