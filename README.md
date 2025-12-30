@@ -20,3 +20,11 @@
   - **NMOS(Negative Type)**
     
   They work together in a CMOS: - When one is **ON** then Other is **OFF.**
+
+  ### Why CMOS is important ?
+  - Very Low Power Consumption
+  - High Speed
+  - High Packing Density ( Many Circuits on a small Chip. )
+  - Reliability
+
+    It is used in like ***Microprocessors***,***Smartphone***,***Digital Logic Circuits***,***Memory Chips.***
