@@ -7,6 +7,15 @@
 - 
 --------------------------------------------------------------------------------------------------------
 ## Content
+- ## 1. Basic Concept & Linear Element
+
+  ### 1.1 Charge
+  The most basic quantity in an electric circuit is the electric charge.
+  Charge is an **Electric Property** of an atomic particle of which matter consists, measured in **Coulombs** (C).
+  The Coulomb is a large unit of charge. 1C = 1 / 1.602 * 10^-19 =  6.24 * 10^-18  
+
+
+  
 - ## 1. CMOS
   
   ### What Is CMOS ?
