@@ -54,10 +54,18 @@
   The electric power utility companies measures energy in Watt-hour (Wh) , Where 1 Wh = 3600 J.
 
   ### 1.6 Resistor
-  A resistor is an passive electrical component that opposes the flow of electric current and is mainly used to control
-  voltage/current, and set bias conditions in circuits.
-  **Used of Resistor**
+  A resistor is an passive electrical component that opposes the flow of electric current.
+
+  The resistance value is measured in **Ohms (Ω)**
+
+  Given by Ohm’s Law:
+
+  V=I×R
   
+  **Used of Resistor**
+   - Its main use is to limit or control the flow of electric current in a circuit.
+   - To set biasing in amplifiers
+   - 
   
 - ## 1. CMOS
   
