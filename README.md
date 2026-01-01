@@ -58,15 +58,16 @@
 
   The resistance value is measured in **Ohms (Ω)**
 
-  Given by Ohm’s Law:
-
-  V=I×R
+  Given by Ohm’s Law:   V=I×R
   
   **Used of Resistor**
    - Its main use is to limit or control the flow of electric current in a circuit.
    - To set biasing in amplifiers
-   - 
-  
+
+   ### 1.7 Capacitors
+   A capacitor is a passive electrical component that stores energy in the form of an electric field, defined by the      relation: ' Q = C * V ', where C is the capacitance in **Farads**.
+
+   
 - ## 1. CMOS
   
   ### What Is CMOS ?
