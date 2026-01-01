@@ -69,8 +69,40 @@
 
    The capacitance C of a parallel-plate capacitor depends on its physical structure and the material between the         plates, given by the formula: `` C = εA / d ``.
 
-   <img width="510" height="401" alt="image" src="https://github.com/user-attachments/assets/f723c82e-eba2-4672-81fe-40c60b76bca6" />
+   In the **Skywater SKY130 PDK**, various capacitor types are available for use in analog, RF, and digital designs,     each offering trade-offs in capacitance density, linearity, voltage rating, and temperature stability.
 
+   ### Types of Capacitors available:
+   ``sky130_fd_pr__cap_mim_m3_1.model`` is a **Metal-Insulator-Metal (MIM)** capacitor between **Metal3 and              Metal2**, suitable for analog precision applications.
+   ``sky130_fd_pr__cap_mim_m3_2.model`` is another **MIM** capacitor variant with different area usage and parasitic     trade-offs.
+   ``sky130_fd_pr__cap_mim_m2_1.model`` defines a MIM capacitor between **Metal2 and Metal1** layers.
+   ``sky130_fd_pr__cap_var_lvt.model`` is a **MOS varactor** (voltage-dependent capacitor) built using LVT NMOS          structure, useful for RF tuning.
+   ``sky130_fd_pr__cap_var_hvt.model`` is a similar **varactor** using HVT device for different threshold and leakage    behavior.
+
+   ```
+   ************************ RC Charging Circuit With Pulse Input **********************
+   ********* Date: 01/01/2026 , Designer: Chandan Shaw , Silicon University  **********
+
+   .title RC Charging Circuit With Pulse Input
+   .lib "/home/chandanvlsi/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt"
+   .temp 25
+
+   V1      in      0       pulse(0 1.8 0 1p 1p 100p 200p)
+   R1      in      out     4.45k
+   XC1     out     0       sky130_fd_pr__cap_mim_m3_1 w=1 l=1
+
+   .tran 0.1n 1n
+
+   .control
+   run
+   plot v(in) v(out)
+   .endc
+
+   .end
+  ```
+
+   ******
+   <img width="510" height="401" alt="image" src="https://github.com/user-attachments/assets/f723c82e-eba2-4672-81fe-     40c60b76bca6" />
+  
    
 - ## 1. CMOS
   
