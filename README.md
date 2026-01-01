@@ -72,11 +72,11 @@
    In the **Skywater SKY130 PDK**, various capacitor types are available for use in analog, RF, and digital designs,     each offering trade-offs in capacitance density, linearity, voltage rating, and temperature stability.
 
    ### Types of Capacitors available:
-   ``sky130_fd_pr__cap_mim_m3_1.model`` is a **Metal-Insulator-Metal (MIM)** capacitor between **Metal3 and              Metal2**, suitable for analog precision applications.
-   ``sky130_fd_pr__cap_mim_m3_2.model`` is another **MIM** capacitor variant with different area usage and parasitic     trade-offs.
-   ``sky130_fd_pr__cap_mim_m2_1.model`` defines a MIM capacitor between **Metal2 and Metal1** layers.
-   ``sky130_fd_pr__cap_var_lvt.model`` is a **MOS varactor** (voltage-dependent capacitor) built using LVT NMOS          structure, useful for RF tuning.
-   ``sky130_fd_pr__cap_var_hvt.model`` is a similar **varactor** using HVT device for different threshold and leakage    behavior.
+   - ``sky130_fd_pr__cap_mim_m3_1.model`` is a **Metal-Insulator-Metal (MIM)** capacitor between **Metal3 and            Metal2**, suitable for analog precision applications.
+   - ``sky130_fd_pr__cap_mim_m3_2.model`` is another **MIM** capacitor variant with different area usage and             parasitic trade-offs.
+   - ``sky130_fd_pr__cap_mim_m2_1.model`` defines a MIM capacitor between **Metal2 and Metal1** layers.
+   - ``sky130_fd_pr__cap_var_lvt.model`` is a **MOS varactor** (voltage-dependent capacitor) built using LVT NMOS        structure, useful for RF tuning.
+   - ``sky130_fd_pr__cap_var_hvt.model`` is a similar **varactor** using HVT device for different threshold and          leakage behavior.
 
    ```
    ************************ RC Charging Circuit With Pulse Input **********************
@@ -101,7 +101,7 @@
   ```
 
    ******
-   <img width="510" height="401" alt="image" src="https://github.com/user-attachments/assets/f723c82e-eba2-4672-81fe-     40c60b76bca6" />
+   ![Diagram]_<img width="510" height="401" alt="image" src="https://github.com/user-attachments/assets/f723c82e-eba2-4672-81fe-     40c60b76bca6" />
   
    
 - ## 1. CMOS
