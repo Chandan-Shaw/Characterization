@@ -14,14 +14,14 @@
   
   Charge is an **Electric Property** of an atomic particle of which matter consists, measured in **Coulombs** (C).
   
-  The Coulomb is a large unit of charge. 1C = 1 / 1.602 * 10^-19 =  6.24 * 10^-18  
+  The Coulomb is a large unit of charge. ``1C = 1 / 1.602 * 10^-19 =  6.24 * 10^-18``  
 
   ### 1.2 Current
   The electric current due to the flow of electronic charge in a conductor.
 
   Electric Current is the time rate of change of Charge,measured in **Ampere** (A).
 
-  Mathematically - i = dq/dt
+  Mathematically - `` i = dq/dt ``
 
   ( 1 Ampere = 1 Coulomb/1Second )
 
@@ -29,18 +29,18 @@
   Voltage is the energy required to move a unit charge from a reference point(-) to another point (+), measured in
   **Volts (V).**
 
-  Voltage between two pont a & b is as:  Vab = dw/dq   ( 1 Volt = 1 Joule/Coulomb )
+  Voltage between two pont a & b is as:  `` Vab = dw/dq ``  ( 1 Volt = 1 Joule/Coulomb )
 
   **Vab = -Vba** (Voltage drops from a to b is equivalent to voltage rise from b to a )
 
   ### 1.4 Power
   Power is the time rate of expanding or absorbing energy, measured is **Watts (W).**
 
-  Mathematically , p = dw/dt  (1 Watt = 1 Joule/1Second)
+  Mathematically , `` p = dw/dt `` (1 Watt = 1 Joule/1Second)
 
   where p is **power**, w is **energy** in Joules and t is the **time** in seconds.
 
-  p = vi , is a time varing quantity and is called **Instantaneous Power.**
+  `` p = vi `` , is a time varing quantity and is called **Instantaneous Power.**
 
   The power absorbed or supplied by an element is the product of the voltage across the element and the current          through it.
 
@@ -49,16 +49,16 @@
 
   Energy is an electric circuit is defined as the total power consumption in a period (From time t0 to t)
 
-  Mathematically , w = $\int_{t_0}^{t} p \ dt$ = $\int_{t_0}^{t} vi \ dt$
+  Mathematically , `` w = $\int_{t_0}^{t} p \ dt$ = $\int_{t_0}^{t} vi \ dt$ `` 
 
-  The electric power utility companies measures energy in Watt-hour (Wh) , Where 1 Wh = 3600 J.
+  The electric power utility companies measures energy in Watt-hour (Wh) , Where `` 1 Wh = 3600 J `` 
 
   ### 1.6 Resistor
   A resistor is an passive electrical component that opposes the flow of electric current.
 
   The resistance value is measured in **Ohms (Ω)**
 
-  Given by Ohm’s Law:   V=I×R
+  Given by Ohm’s Law:   `` V=I×R `` 
   
   **Used of Resistor**
    - Its main use is to limit or control the flow of electric current in a circuit.
@@ -69,6 +69,7 @@
 
    The capacitance C of a parallel-plate capacitor depends on its physical structure and the material between the         plates, given by the formula: `` C = εA / d ``.
 
+   ![Diagram](docs/Capacitor.JPG) 
    
 - ## 1. CMOS
   
