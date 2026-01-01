@@ -69,7 +69,8 @@
 
    The capacitance C of a parallel-plate capacitor depends on its physical structure and the material between the         plates, given by the formula: `` C = εA / d ``.
 
-   ![Diagram](docs/Capacitor.JPG) 
+   <img width="510" height="401" alt="image" src="https://github.com/user-attachments/assets/f723c82e-eba2-4672-81fe-40c60b76bca6" />
+
    
 - ## 1. CMOS
   
