@@ -65,7 +65,9 @@
    - To set biasing in amplifiers
 
    ### 1.7 Capacitors
-   A capacitor is a passive electrical component that stores energy in the form of an electric field, defined by the      relation: ' Q = C * V ', where C is the capacitance in **Farads**.
+   A capacitor is a passive electrical component that stores energy in the form of an electric field, defined by the      relation: `` Q = C * V ``, where C is the capacitance in **Farads**.
+
+   The capacitance C of a parallel-plate capacitor depends on its physical structure and the material between the         plates, given by the formula: `` C = εA / d ``.
 
    
 - ## 1. CMOS
