@@ -101,12 +101,9 @@
   ```
 
    ### Plot Of Vin And Vout
+  
+  ![Diagram](docs/RC_Simulation.png)
 
-   <img width="1820" height="1025" alt="Screenshot 2026-01-01 223027" src="https://github.com/user-   attachments/assets/b9266617-cc02-4f2c-9f65-0ea08c2bb9d6" />
- 
-  
-   ![Diagram]_<img width="510" height="401" alt="image" src="https://github.com/user-attachments/assets/f723c82e-eba2-4672-81fe-     40c60b76bca6" />
-  
    
 - ## 1. CMOS
   
