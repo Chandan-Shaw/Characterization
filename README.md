@@ -77,7 +77,7 @@
    - ``sky130_fd_pr__cap_mim_m2_1.model`` defines a MIM capacitor between **Metal2 and Metal1** layers.
    - ``sky130_fd_pr__cap_var_lvt.model`` is a **MOS varactor** (voltage-dependent capacitor) built using LVT NMOS        structure, useful for RF tuning.
    - ``sky130_fd_pr__cap_var_hvt.model`` is a similar **varactor** using HVT device for different threshold and          leakage behavior.
-
+   ![Diagram](https://github.com/Chandan-Shaw/Characterization/blob/main/Capacitor.JPG)
    ```
    ************************ RC Charging Circuit With Pulse Input **********************
    ********* Date: 01/01/2026 , Designer: Chandan Shaw , Silicon University  **********
