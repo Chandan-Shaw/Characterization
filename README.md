@@ -115,7 +115,9 @@
     where `τ` (tau) represents the **time constant** in seconds, indicating how quickly the circuit charges or discharges.
   - In the **Skywater SKY130 PDK**, **RC circuits** are implemented using integrated resistors (e.g.,                          `sky130_fd_pr__res_high_po`) and capacitors (e.g., `sky130_fd_pr__cap_mim_m3_1`). These are critical in analog and          mixed-signal design applications such as filters, timing circuits, and analog front ends.
 
-    
+    ![Diagram](https://github.com/Chandan-Shaw/Characterization/blob/main/RC%20Circuit.JPG)
+
+    ![Diagram](https://github.com/Chandan-Shaw/Characterization/blob/main/CR%20Circuit.JPG)
    
 - ## 1. CMOS
   
