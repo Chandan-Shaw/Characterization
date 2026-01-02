@@ -80,6 +80,8 @@
 
    #### Circuit Diagram Of RC Charging Circuit With Pulse Input
    ![Diagram](https://github.com/Chandan-Shaw/Characterization/blob/main/Capacitor.JPG)
+
+   #### Netlist Code Of Circuit Diagram
    ```
    ************************ RC Charging Circuit With Pulse Input **********************
    ********* Date: 01/01/2026 , Designer: Chandan Shaw , Silicon University  **********
