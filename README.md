@@ -102,7 +102,7 @@
 
    ### Plot Of Vin And Vout
   
-  ![Diagram](Characterization/docs/RC_Simulation.png)
+  ![Diagram](https://github.com/Chandan-Shaw/Characterization/blob/main/RC_Simulation.png)
 
    
 - ## 1. CMOS
