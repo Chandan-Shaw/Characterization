@@ -52,8 +52,9 @@
   Mathematically , `` w = $\int_{t_0}^{t} p \ dt$ = $\int_{t_0}^{t} vi \ dt$ `` 
 
   The electric power utility companies measures energy in Watt-hour (Wh) , Where `` 1 Wh = 3600 J `` 
-
-  ### 1.6 Resistor
+- ## 2. Linear Element
+  
+  ### 2.1 Resistor
   A resistor is an passive electrical component that opposes the flow of electric current.
 
   The resistance value is measured in **Ohms (Ω)**
@@ -64,19 +65,19 @@
    - Its main use is to limit or control the flow of electric current in a circuit.
    - To set biasing in amplifiers
 
-   ### 1.7 Capacitors
-   A capacitor is a passive electrical component that stores energy in the form of an electric field, defined by the      relation: `` Q = C * V ``, where C is the capacitance in **Farads**.
+   ### 2.2 Capacitors
+   A capacitor is a passive electrical component that stores energy in the form of an electric field, defined by the          relation: `` Q = C * V ``, where C is the capacitance in **Farads**.
 
-   The capacitance C of a parallel-plate capacitor depends on its physical structure and the material between the         plates, given by the formula: `` C = εA / d ``.
+   The capacitance C of a parallel-plate capacitor depends on its physical structure and the material between the             plates, given by the formula: `` C = εA / d ``.
 
-   In the **Skywater SKY130 PDK**, various capacitor types are available for use in analog, RF, and digital designs,     each offering trade-offs in capacitance density, linearity, voltage rating, and temperature stability.
+   In the **Skywater SKY130 PDK**, various capacitor types are available for use in analog, RF, and digital designs,          each offering trade-offs in capacitance density, linearity, voltage rating, and temperature stability.
 
    ### Types of Capacitors available:
-   - ``sky130_fd_pr__cap_mim_m3_1.model`` is a **Metal-Insulator-Metal (MIM)** capacitor between **Metal3 and            Metal2**, suitable for analog precision applications.
-   - ``sky130_fd_pr__cap_mim_m3_2.model`` is another **MIM** capacitor variant with different area usage and             parasitic trade-offs.
+   - ``sky130_fd_pr__cap_mim_m3_1.model`` is a **Metal-Insulator-Metal (MIM)** capacitor between **Metal3 and                  Metal2**, suitable for analog precision applications.
+   - ``sky130_fd_pr__cap_mim_m3_2.model`` is another **MIM** capacitor variant with different area usage and                   parasitic trade-offs.
    - ``sky130_fd_pr__cap_mim_m2_1.model`` defines a MIM capacitor between **Metal2 and Metal1** layers.
-   - ``sky130_fd_pr__cap_var_lvt.model`` is a **MOS varactor** (voltage-dependent capacitor) built using LVT NMOS        structure, useful for RF tuning.
-   - ``sky130_fd_pr__cap_var_hvt.model`` is a similar **varactor** using HVT device for different threshold and          leakage behavior.
+   - ``sky130_fd_pr__cap_var_lvt.model`` is a **MOS varactor** (voltage-dependent capacitor) built using LVT NMOS              structure, useful for RF tuning.
+   - ``sky130_fd_pr__cap_var_hvt.model`` is a similar **varactor** using HVT device for different threshold and                leakage behavior.
 
    #### Circuit Diagram Of RC Charging Circuit With Pulse Input
    ![Diagram](https://github.com/Chandan-Shaw/Characterization/blob/main/Capacitor.JPG)
