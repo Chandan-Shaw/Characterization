@@ -152,7 +152,32 @@
  
     #### Simulation Of Transient Analysis
     ![Diagram](https://github.com/Chandan-Shaw/Characterization/blob/main/RC_Transient_Simulation.png)
- 
+    
+    #### 2.3.2 AC Analysis
+    ```
+    ************************* RC Charging Circuit In AC Analysis ***********************
+    ********* Date: 02/01/2026 , Designer: Chandan Shaw , Silicon University  **********
+
+    .title RC Circuit
+    .lib "/home/chandanvlsi/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice" tt
+    .temp 25
+
+    V1      in      0       AC 1
+    XR1     in      out     0       sky130_fd_pr__res_high_po_0p35  l=3.5
+    XC1     out     0       sky130_fd_pr__cap_mim_m3_1 w=1 l=1
+
+    * AC Simulation
+    .ac dec 10 1 15g
+
+    * Output commands
+    .control
+    run
+    .meas ac f3db WHEN VDB(out) = -3 ; –3 dB cutoff frequency
+    plot vdb(out)
+    .endc
+
+    .end
+    ```
     
     ![Diagram](https://github.com/Chandan-Shaw/Characterization/blob/main/CR%20Circuit.JPG)
    
