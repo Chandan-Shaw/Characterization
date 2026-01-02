@@ -78,7 +78,7 @@
    - ``sky130_fd_pr__cap_var_lvt.model`` is a **MOS varactor** (voltage-dependent capacitor) built using LVT NMOS        structure, useful for RF tuning.
    - ``sky130_fd_pr__cap_var_hvt.model`` is a similar **varactor** using HVT device for different threshold and          leakage behavior.
 
-   #### Circuit
+   #### Circuit Diagram Of RC Charging Circuit With Pulse Input
    ![Diagram](https://github.com/Chandan-Shaw/Characterization/blob/main/Capacitor.JPG)
    ```
    ************************ RC Charging Circuit With Pulse Input **********************
