@@ -116,6 +116,39 @@
   - In the **Skywater SKY130 PDK**, **RC circuits** are implemented using integrated resistors (e.g.,                          `sky130_fd_pr__res_high_po`) and capacitors (e.g., `sky130_fd_pr__cap_mim_m3_1`). These are critical in analog and          mixed-signal design applications such as filters, timing circuits, and analog front ends.
 
     ![Diagram](https://github.com/Chandan-Shaw/Characterization/blob/main/RC%20Circuit.JPG)
+ 
+    #### 2.3.1 Transient Analysis
+    ```
+    ********************** RC Charging Circuit In Transient Analysis *******************
+    ********* Date: 02/01/2026 , Designer: Chandan Shaw , Silicon University  **********
+
+
+    .title RC Circuit
+    .lib /home/chandanvlsi/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+    .temp 25
+
+    Vin     in      0       PULSE(0 1.8 0 0 0 100p 200p)
+    XR1     in      out     0       sky130_fd_pr__res_high_po_0p35 l =3.5
+    XC1     out     0       sky130_fd_pr__cap_mim_m3_1 w=1 l=1
+
+    .tran 1p 300p
+
+    .control
+    run
+    plot v(in) v(out)
+    .endc
+
+    *Measure Time delays
+    .meas tran rise        TRIG V(out) VAL=0.18 RISE=1 TARG V(out) VAL=1.62 RISE=1 ; rise‑time 10 % → 90 % at V(out)
+    .meas tran fall        TRIG V(out) VAL=1.62 FALL=1 TARG V(out) VAL=0.18 FALL=1 ; fall‑time 90 % → 10 % at V(out)
+    .meas tran rise_delay  TRIG V(in)  VAL=0.9  RISE=1 TARG V(out) VAL=0.9  RISE=1 ; tpd (low→high) 50 % V(in) → 50 %          V(out)
+    .meas tran fall_delay  TRIG V(in)  VAL=0.9  FALL=1 TARG V(out) VAL=0.9  FALL=1 ; tpd (high→low) 50 % V(in) → 50 %          V(out)
+
+    *Measure Max Voltage
+    .meas tran VMAX MAX V(out) ; peak V(out) during transient
+
+    .end
+    ``` 
 
     ![Diagram](https://github.com/Chandan-Shaw/Characterization/blob/main/CR%20Circuit.JPG)
    
