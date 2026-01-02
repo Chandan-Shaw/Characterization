@@ -148,8 +148,12 @@
     .meas tran VMAX MAX V(out) ; peak V(out) during transient
 
     .end
-    ``` 
-
+    ```
+ 
+    #### Simulation Of Transient Analysis
+    ![Diagram](https://github.com/Chandan-Shaw/Characterization/blob/main/RC_Transient_Simulation.png)
+ 
+    
     ![Diagram](https://github.com/Chandan-Shaw/Characterization/blob/main/CR%20Circuit.JPG)
    
 - ## 1. CMOS
