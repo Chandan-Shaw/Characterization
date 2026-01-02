@@ -105,10 +105,17 @@
    .end
   ```
 
-   ### Plot Of Vin And Vout
+   #### Plot Of Vin And Vout
   
-  ![Diagram](https://github.com/Chandan-Shaw/Characterization/blob/main/RC_Simulation.png)
+   ![Diagram](https://github.com/Chandan-Shaw/Characterization/blob/main/RC_Simulation.png)
 
+  ### 2.3 RC Circuit
+  - An RC circuit is an electrical circuit made of **R — Resistor** & **C — Capacitor** connected either in series or          parallel, which exhibit a time-dependent response to voltage or current changes. The fundamental time constant is          defined as:  
+    `τ = R * C`,
+    where `τ` (tau) represents the **time constant** in seconds, indicating how quickly the circuit charges or discharges.
+  - In the **Skywater SKY130 PDK**, **RC circuits** are implemented using integrated resistors (e.g.,                          `sky130_fd_pr__res_high_po`) and capacitors (e.g., `sky130_fd_pr__cap_mim_m3_1`). These are critical in analog and          mixed-signal design applications such as filters, timing circuits, and analog front ends.
+
+    
    
 - ## 1. CMOS
   
