@@ -177,7 +177,9 @@
 
   .end
   ```
-    
+   #### Simulation Of AC Analysis
+  ![Diagram]( https://github.com/Chandan-Shaw/Characterization/blob/main/RC_AC_Simulation.png)
+  
   ![Diagram](https://github.com/Chandan-Shaw/Characterization/blob/main/CR%20Circuit.JPG)
    
 - ## 1. CMOS
