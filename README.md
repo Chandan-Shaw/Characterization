@@ -218,7 +218,8 @@
 
   .end
   ```
- 
+  #### Simulation Of Transient Analysis
+  ![Diagram](https://github.com/Chandan-Shaw/Characterization/blob/main/CR_Transient_Simulation.png)
   
   ![Diagram](https://github.com/Chandan-Shaw/Characterization/blob/main/CR%20Circuit.JPG)
    
