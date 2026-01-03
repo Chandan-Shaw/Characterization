@@ -154,7 +154,7 @@
     
   #### 2.3.2 AC Analysis
   ```
-  ************************* RC Charging Circuit In AC Analysis ***********************
+  ***************************** RC Circuit In AC Analysis ****************************
   ********* Date: 02/01/2026 , Designer: Chandan Shaw , Silicon University  **********
 
   .title RC Circuit
@@ -179,6 +179,46 @@
   ```
    #### Simulation Of AC Analysis
   ![Diagram]( https://github.com/Chandan-Shaw/Characterization/blob/main/RC_AC_Simulation.png)
+
+  ### 2.4 CR Circuit
+  - A **Cr circuit** is essentially the same as an RC circuit, but with the capacitor (C) placed before the resistor (R)     in the signal path. While electrically the time constant remains the same, the circuit response differs, especially in     transient analysis. The fundamental time constant is defined as:  
+  `τ = R * C`,
+  where `τ` (tau) represents the **time constant** in seconds, indicating how quickly the circuit charges or discharges.
+
+ - In the **Skywater SKY130 PDK**, **CR circuits** are implemented using integrated capacitors (e.g.,                       `sky130_fd_pr__cap_mim_m3_1`) and resistors (e.g., `sky130_fd_pr__res_high_po`). These configurations are often used in    differentiator circuits, pulse shaping, and AC coupling applications in analog and RF systems.
+
+ #### 2.4.1 Transient Analysis
+ ```
+ ************************** CR Circuit In Transient Analysis *************************
+ ********* Date: 03/01/2026 , Designer: Chandan Shaw , Silicon University  ***********
+
+ .title CR Circuit
+ .lib /home/chandanvlsi/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+ .temp 25
+
+ Vin     in      0       PULSE(0 1.8 0 0 0 100p 200p)
+ XC1     in      out     sky130_fd_pr__cap_mim_m3_1 w=1 l=1
+ XR1     out     0       0       sky130_fd_pr__res_high_po_0p35 l =3.5
+
+ .tran 1p 300p
+
+ .control
+ run
+ plot v(in) v(out)
+ .endc
+
+ *Measure Time delays
+ .meas tran rise TRIG V(out) VAL=0.14 RISE=1 TARG V(out) VAL=1.29 RISE=1
+ .meas tran fall TRIG V(out) VAL=1.29 FALL=1 TARG V(out) VAL=0.14 FALL=1
+ .meas tran rise_delay TRIG V(in) VAL=0.7 RISE=1 TARG V(out) VAL=0.7 RISE=1
+ .meas tran fall_delay TRIG V(in) VAL=0.7 FALL=1 TARG V(out) VAL=0.7 FALL=1
+
+ *Measure Max Voltage
+ .meas tran VMAX MAX V(out)
+
+ .end
+ ```
+ 
   
   ![Diagram](https://github.com/Chandan-Shaw/Characterization/blob/main/CR%20Circuit.JPG)
    
