@@ -187,6 +187,8 @@
 
   - In the **Skywater SKY130 PDK**, **CR circuits** are implemented using integrated capacitors (e.g.,                       `sky130_fd_pr__cap_mim_m3_1`) and resistors (e.g., `sky130_fd_pr__res_high_po`). These configurations are often used in    differentiator circuits, pulse shaping, and AC coupling applications in analog and RF systems.
 
+  ![Diagram](https://github.com/Chandan-Shaw/Characterization/blob/main/CR%20Circuit.JPG)
+
   #### 2.4.1 Transient Analysis
   ```
   ************************** CR Circuit In Transient Analysis *************************
@@ -221,7 +223,7 @@
   #### Simulation Of Transient Analysis
   ![Diagram](https://github.com/Chandan-Shaw/Characterization/blob/main/CR_Transient_Simulation.png)
   
-  ![Diagram](https://github.com/Chandan-Shaw/Characterization/blob/main/CR%20Circuit.JPG)
+ 
    
    ## 1. CMOS
   
