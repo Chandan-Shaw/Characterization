@@ -222,8 +222,32 @@
   ```
   #### Simulation Of Transient Analysis
   ![Diagram](https://github.com/Chandan-Shaw/Characterization/blob/main/CR_Transient_Simulation.png)
+
+  #### 2.4.2 AC Analysis
+
+  ```
+  ***************************** CR Circuit In AC Analysis *****************************
+  ********* Date: 03/01/2026 , Designer: Chandan Shaw , Silicon University  ***********
+
+  title CR Circuit
+  .lib "/home/chandanvlsi/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt"
+  .temp 25
   
- 
+  V1       in     0           ac  1
+  XC1     in     out          sky130_fd_pr__cap_mim_m3_1  w=1 l=1
+  XR1     out     0       0   sky130_fd_pr__res_high_po_0p35  l=3.5
+  * Simulation Command  
+  .ac dec 10 1meg 10e13
+  
+  .control
+  run
+  plot vdb(out)
+  .endc
+  .end
+  ```
+
+  #### Simulation Of AC Analysis
+  ![Diagram](https://github.com/Chandan-Shaw/Characterization/blob/main/CR_AC_Simulation.png)
    
    ## 1. CMOS
   
