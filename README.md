@@ -75,23 +75,23 @@ Characterization is usually performed post-design (pre- and post-fabrication) to
    - To set biasing in amplifiers
 
  ### 2.2 Capacitors
-  A capacitor is a passive electrical component that stores energy in the form of an electric field, defined by the relation: `` Q = C * V ``, where C is the capacitance in **Farads**.
+ A capacitor is a passive electrical component that stores energy in the form of an electric field, defined by the relation: `` Q = C * V ``, where C is the capacitance in **Farads**.
 
-  The capacitance C of a parallel-plate capacitor depends on its physical structure and the material between the plates, given by the formula: `` C = εA / d ``.
+ The capacitance C of a parallel-plate capacitor depends on its physical structure and the material between the plates, given by the formula: `` C = εA / d ``.
 
-  In the **Skywater SKY130 PDK**, various capacitor types are available for use in analog, RF, and digital designs, each offering trade-offs in capacitance density, linearity, voltage rating, and            temperature stability.
+ In the **Skywater SKY130 PDK**, various capacitor types are available for use in analog, RF, and digital designs, each offering trade-offs in capacitance density, linearity, voltage rating, and            temperature stability.
 
-   ### Types of Capacitors available:
-   - ``sky130_fd_pr__cap_mim_m3_1.model`` is a **Metal-Insulator-Metal (MIM)** capacitor between **Metal3 and                  Metal2**, suitable for analog precision applications.
-   - ``sky130_fd_pr__cap_mim_m3_2.model`` is another **MIM** capacitor variant with different area usage and                   parasitic trade-offs.
-   - ``sky130_fd_pr__cap_mim_m2_1.model`` defines a MIM capacitor between **Metal2 and Metal1** layers.
-   - ``sky130_fd_pr__cap_var_lvt.model`` is a **MOS varactor** (voltage-dependent capacitor) built using LVT NMOS              structure, useful for RF tuning.
-   - ``sky130_fd_pr__cap_var_hvt.model`` is a similar **varactor** using HVT device for different threshold and                leakage behavior.
+ ### Types of Capacitors available:
+  - ``sky130_fd_pr__cap_mim_m3_1.model`` is a **Metal-Insulator-Metal (MIM)** capacitor between **Metal3 and                  Metal2**, suitable for analog precision applications.
+  - ``sky130_fd_pr__cap_mim_m3_2.model`` is another **MIM** capacitor variant with different area usage and                   parasitic trade-offs.
+  - ``sky130_fd_pr__cap_mim_m2_1.model`` defines a MIM capacitor between **Metal2 and Metal1** layers.
+  - ``sky130_fd_pr__cap_var_lvt.model`` is a **MOS varactor** (voltage-dependent capacitor) built using LVT NMOS              structure, useful for RF tuning.
+  - ``sky130_fd_pr__cap_var_hvt.model`` is a similar **varactor** using HVT device for different threshold and                leakage behavior.
 
-   #### Circuit Diagram Of RC Charging Circuit With Pulse Input
-   ![Diagram](https://github.com/Chandan-Shaw/Characterization/blob/main/Capacitor.JPG)
+  #### Circuit Diagram Of RC Charging Circuit With Pulse Input
+  ![Diagram](https://github.com/Chandan-Shaw/Characterization/blob/main/Capacitor.JPG)
 
-   #### Netlist Code Of Circuit Diagram
+  #### Netlist Code Of Circuit Diagram
    ```
    ************************ RC Charging Circuit With Pulse Input **********************
    ********* Date: 01/01/2026 , Designer: Chandan Shaw , Silicon University  **********
@@ -114,9 +114,9 @@ Characterization is usually performed post-design (pre- and post-fabrication) to
    .end
   ```
 
-   #### Plot Of Vin And Vout
+  #### Plot Of Vin And Vout
   
-   ![Diagram](https://github.com/Chandan-Shaw/Characterization/blob/main/RC_Simulation.png)
+  ![Diagram](https://github.com/Chandan-Shaw/Characterization/blob/main/RC_Simulation.png)
 
   ### 2.3 RC Circuit
   - An RC circuit is an electrical circuit made of **R — Resistor** & **C — Capacitor** connected either in series or parallel, which exhibit a time-dependent response to voltage or current changes. The     fundamental time constant is defined as:  
