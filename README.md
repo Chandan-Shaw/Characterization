@@ -4,7 +4,7 @@
 ## What Is Analog Characterization ?
 Analog IC (Integrated Circuit) Characterization is the process of evaluating and measuring the electrical performance of an analog circuit under various conditions. This involves testing key parameters such as gain, offset, bandwidth, noise, power consumption, input/output impedance, temperature stability, and process variation sensitivity.
 
-Characterization is carried out using tools like Ngspice, Spectre, HSPICE, Eldo (Simulation) and Xschem (Schematic) providing a complete framework for accurate simulation and analysis of analog circuits.
+Characterization is carried out using tools like Ngspice, Eldo (Simulation) and Xschem (Schematic) providing a complete framework for accurate simulation and analysis of analog circuits.
 
 Characterization is usually performed post-design (pre- and post-fabrication) to ensure the circuit behaves as intended across different corners:
 
