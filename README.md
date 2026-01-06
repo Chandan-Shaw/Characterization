@@ -58,7 +58,7 @@ Characterization is usually performed post-design (pre- and post-fabrication) to
 
   Energy is an electric circuit is defined as the total power consumption in a period (From time t0 to t)
 
-  Mathematically , `` w = $\int_{t_0}^{t} p \ dt$ = $\int_{t_0}^{t} vi \ dt$ `` 
+  Mathematically ,  w = $\int_{t_0}^{t} p \ dt$ = $\int_{t_0}^{t} vi \ dt$  
 
   The electric power utility companies measures energy in Watt-hour (Wh) , Where `` 1 Wh = 3600 J `` 
 - ## 2. Linear Element
