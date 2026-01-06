@@ -255,6 +255,15 @@ Characterization is usually performed post-design (pre- and post-fabrication) to
 
   #### Simulation Of AC Analysis
   ![Diagram](https://github.com/Chandan-Shaw/Characterization/blob/main/CR_AC_Simulation.png)
+
+ ## 3. MOSFET Circuits
+ - A MOSFET(Metal-Oxide-Semiconductor Field-Effect Transistor) has four terminal device:- Gate, Drain, Source, Body.
+ - MOSFET is device used for switching and amplification, Its current is controlled by the voltage applied to the gate terminal.
+ - The MOSFET operates in three regions: **cutoff, linear, and saturation**, depending on gate-source (VGS) and drain-source (VDS) voltages.
+ - In the Skywater SKY130 PDK, MOSFETs like ``sky130_fd_pr__nfet_01v8`` (NMOS) and ``sky130_fd_pr__pfet_01v8`` (PMOS) are commonly used. These are essential in digital logic, analog amplifiers, and
+ switching applications.
+ 
+ 
    
   ## 1. CMOS
   
