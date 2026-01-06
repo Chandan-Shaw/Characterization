@@ -119,12 +119,11 @@ Characterization is usually performed post-design (pre- and post-fabrication) to
    ![Diagram](https://github.com/Chandan-Shaw/Characterization/blob/main/RC_Simulation.png)
 
   ### 2.3 RC Circuit
-  - An RC circuit is an electrical circuit made of **R — Resistor** & **C — Capacitor** connected either in series or          parallel, which exhibit a time-dependent response to voltage or current changes. The fundamental time constant is          defined as:  
-    `τ = R * C`,
-    where `τ` (tau) represents the **time constant** in seconds, indicating how quickly the circuit charges or discharges.
-  - In the **Skywater SKY130 PDK**, **RC circuits** are implemented using integrated resistors (e.g.,                          `sky130_fd_pr__res_high_po`) and capacitors (e.g., `sky130_fd_pr__cap_mim_m3_1`). These are critical in analog and          mixed-signal design applications such as filters, timing circuits, and analog front ends.
+  - An RC circuit is an electrical circuit made of **R — Resistor** & **C — Capacitor** connected either in series or parallel, which exhibit a time-dependent response to voltage or current changes. The     fundamental time constant is defined as:  
+    `τ = R * C`, where `τ` (tau) represents the **time constant** in seconds, indicating how quickly the circuit charges or discharges.
+  - In the **Skywater SKY130 PDK**, **RC circuits** are implemented using integrated resistors (e.g.,`sky130_fd_pr__res_high_po`) and capacitors (e.g.,`sky130_fd_pr__cap_mim_m3_1`). These are critical in    analog and mixed-signal design applications such as filters, timing circuits, and analog front ends.
 
-    ![Diagram](https://github.com/Chandan-Shaw/Characterization/blob/main/RC%20Circuit.JPG)
+  ![Diagram](https://github.com/Chandan-Shaw/Characterization/blob/main/RC%20Circuit.JPG)
  
   #### 2.3.1 Transient Analysis
   ```
@@ -186,15 +185,14 @@ Characterization is usually performed post-design (pre- and post-fabrication) to
 
   .end
   ```
-   #### Simulation Of AC Analysis
+  #### Simulation Of AC Analysis
   ![Diagram]( https://github.com/Chandan-Shaw/Characterization/blob/main/RC_AC_Simulation.png)
 
   ### 2.4 CR Circuit
-  - A **Cr circuit** is essentially the same as an RC circuit, but with the capacitor (C) placed before the resistor (R)     in the signal path. While electrically the time constant remains the same, the circuit response differs, especially in     transient analysis. The fundamental time constant is defined as:  
-  `τ = R * C`,
+  - A **Cr circuit** is essentially the same as an RC circuit, but with the capacitor (C) placed before the resistor (R) in the signal path. While electrically the time constant remains the same, the        circuit response differs, especially in transient analysis. The fundamental time constant is defined as: `τ = R * C`,
   where `τ` (tau) represents the **time constant** in seconds, indicating how quickly the circuit charges or discharges.
 
-  - In the **Skywater SKY130 PDK**, **CR circuits** are implemented using integrated capacitors (e.g.,                       `sky130_fd_pr__cap_mim_m3_1`) and resistors (e.g., `sky130_fd_pr__res_high_po`). These configurations are often used in    differentiator circuits, pulse shaping, and AC coupling applications in analog and RF systems.
+  - In the **Skywater SKY130 PDK**, **CR circuits** are implemented using integrated capacitors (e.g., `sky130_fd_pr__cap_mim_m3_1`) and resistors (e.g., `sky130_fd_pr__res_high_po`). These configurations   are often used in differentiator circuits, pulse shaping, and AC coupling applications in analog and RF systems.
 
   ![Diagram](https://github.com/Chandan-Shaw/Characterization/blob/main/CR%20Circuit.JPG)
 
@@ -258,7 +256,7 @@ Characterization is usually performed post-design (pre- and post-fabrication) to
   #### Simulation Of AC Analysis
   ![Diagram](https://github.com/Chandan-Shaw/Characterization/blob/main/CR_AC_Simulation.png)
    
-   ## 1. CMOS
+  ## 1. CMOS
   
   ### What Is CMOS ?
   CMOS (Complementary Metal–Oxide–Semiconductor) is a technology used to build most modern digital chips — like
