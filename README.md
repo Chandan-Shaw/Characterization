@@ -16,16 +16,16 @@ Characterization is usually performed post-design (pre- and post-fabrication) to
 
 --------------------------------------------------------------------------------------------------------
 ## Content
-- ## 1. Basic Concept & Linear Element
+ ## 1. Basic Concept
 
-  ### 1.1 Charge
+ ### 1.1 Charge
   The most basic quantity in an electric circuit is the electric charge.
   
   Charge is an **Electric Property** of an atomic particle of which matter consists, measured in **Coulombs** (C).
   
   The Coulomb is a large unit of charge. ``1C = 1 / 1.602 * 10^-19 =  6.24 * 10^-18``  
 
-  ### 1.2 Current
+ ### 1.2 Current
   The electric current due to the flow of electronic charge in a conductor.
 
   Electric Current is the time rate of change of Charge,measured in **Ampere** (A).
@@ -34,7 +34,7 @@ Characterization is usually performed post-design (pre- and post-fabrication) to
 
   ( 1 Ampere = 1 Coulomb/1Second )
 
-  ### 1.3 Voltage
+ ### 1.3 Voltage
   Voltage is the energy required to move a unit charge from a reference point(-) to another point (+), measured in
   **Volts (V).**
 
@@ -42,7 +42,7 @@ Characterization is usually performed post-design (pre- and post-fabrication) to
 
   **Vab = -Vba** (Voltage drops from a to b is equivalent to voltage rise from b to a )
 
-  ### 1.4 Power
+ ### 1.4 Power
   Power is the time rate of expanding or absorbing energy, measured is **Watts (W).**
 
   Mathematically , `` p = dw/dt `` (1 Watt = 1 Joule/1Second)
@@ -53,7 +53,7 @@ Characterization is usually performed post-design (pre- and post-fabrication) to
 
   The power absorbed or supplied by an element is the product of the voltage across the element and the current          through it.
 
-  ### 1.5 Energy
+ ### 1.5 Energy
   Energy is the capacity to do work, measured in **Joules (J).**
 
   Energy is an electric circuit is defined as the total power consumption in a period (From time t0 to t)
@@ -61,9 +61,9 @@ Characterization is usually performed post-design (pre- and post-fabrication) to
   Mathematically ,  w = $\int_{t_0}^{t} p \ dt$ = $\int_{t_0}^{t} vi \ dt$  
 
   The electric power utility companies measures energy in Watt-hour (Wh) , Where `` 1 Wh = 3600 J `` 
-- ## 2. Linear Element
+ ## 2. Linear Element
   
-  ### 2.1 Resistor
+ ### 2.1 Resistor
   A resistor is an passive electrical component that opposes the flow of electric current.
 
   The resistance value is measured in **Ohms (Ω)**
@@ -74,12 +74,12 @@ Characterization is usually performed post-design (pre- and post-fabrication) to
    - Its main use is to limit or control the flow of electric current in a circuit.
    - To set biasing in amplifiers
 
-   ### 2.2 Capacitors
-   A capacitor is a passive electrical component that stores energy in the form of an electric field, defined by the          relation: `` Q = C * V ``, where C is the capacitance in **Farads**.
+ ### 2.2 Capacitors
+  A capacitor is a passive electrical component that stores energy in the form of an electric field, defined by the relation: `` Q = C * V ``, where C is the capacitance in **Farads**.
 
-   The capacitance C of a parallel-plate capacitor depends on its physical structure and the material between the             plates, given by the formula: `` C = εA / d ``.
+  The capacitance C of a parallel-plate capacitor depends on its physical structure and the material between the plates, given by the formula: `` C = εA / d ``.
 
-   In the **Skywater SKY130 PDK**, various capacitor types are available for use in analog, RF, and digital designs,          each offering trade-offs in capacitance density, linearity, voltage rating, and temperature stability.
+  In the **Skywater SKY130 PDK**, various capacitor types are available for use in analog, RF, and digital designs, each offering trade-offs in capacitance density, linearity, voltage rating, and            temperature stability.
 
    ### Types of Capacitors available:
    - ``sky130_fd_pr__cap_mim_m3_1.model`` is a **Metal-Insulator-Metal (MIM)** capacitor between **Metal3 and                  Metal2**, suitable for analog precision applications.
