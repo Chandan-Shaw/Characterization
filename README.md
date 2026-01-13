@@ -287,3 +287,161 @@ Characterization is usually performed post-design (pre- and post-fabrication) to
   - Reliability
 
     It is used in like ***Microprocessors***,***Smartphone***,***Digital Logic Circuits***,***Memory Chips.***
+
+
+    ## Simple Current Mirror
+
+    ### AC Analysis
+
+    ```
+    *********************** Simple Current Mirror **********************
+******************************* DC ANALYSIS **************************
+************ Date : 25/11/2025, Designer: Chandan Shaw, Silicon University Bhubaneswar ************
+
+.title Simple Current Mirror Using N_Channel MOSFET
+
+.lib /home/chandanvlsi/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+
+.global gnd gnd
+.temp 27
+
+xmn1 Gn Gn gnd gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=4
+xmn2 Dn2 Gn gnd gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=4
+***If we change l value suppose l=0.5 and m=4 then the output resistance is more and performance is better and more accurate and also the change of V(Gn) Voltage and input resistance will also change and deviation is more
+Iin Cn1 Gn dc 100u
+Vout out gnd dc 0.9
+
+Vcm1 vdd Cn1 dc 0
+Vcm2 Out Dn2 dc 0
+
+vsup vdd gnd dc 1.8 ac 1 sin(1.438 1m 100k)
+.ac dec 20 1 1G
+
+.control
+run
+set color0=white
+plot v(out)
+plot i(Vcm1) i(Vcm2)
+plot ph((out)*180/pi)
+.end
+.endc
+```
+
+### DC Analysis
+
+```
+*********************** Simple Current Mirror Using N-Channel MOSFET **********************
+******************************* DC ANALYSIS **************************
+*********************** Date : 25/11/2025, Designer: Chandan Shaw , Silicon University  ****************************
+
+.title Simple Current Mirror Using N_Channel MOSFET
+
+.lib /home/chandanvlsi/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+
+.global gnd gnd
+.temp 27
+
+xmn1 Gn Gn gnd gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=4
+xmn2 Dn2 Gn gnd gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=4
+
+Iin Cn1 Gn dc 100u
+Vout out gnd dc 0.9
+
+** Voltage Source
+Vcm1 vdd Cn1 dc 0
+Vcm2 Out Dn2 dc 0
+
+** Supply Voltage
+vsup vdd gnd dc 1.8 ac 1 sin(1.438 1m 100k)
+
+** Simulation Command
+.dc Vout 0 1.8 0.01
+
+.control
+run
+set color0=white
+plot i(Vcm1) i(Vcm2)
+plot deriv(i(Vcm2))
+plot v(Gn)
+
+*plot ph((out)*180/pi)
+.end
+.endc
+```
+
+### DC Analysis
+
+```
+*********************** Simple Current Mirror **********************
+******************************* DC ANALYSIS **************************
+*********************** Date : 25/11/2025, Designer: Chandan Shaw  ****************************
+
+.title Simple Current Mirror Using N_Channel MOSFET
+
+.lib /home/chandanvlsi/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+
+.global gnd gnd
+.temp 27
+
+xmn1 Gn Gn gnd gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=4
+xmn2 Dn2 Gn gnd gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=4
+Iin Cn1 Gn dc 100u
+Vout out gnd dc 0.835
+
+Vcm1 vdd Cn1 dc 0
+Vcm2 Out Dn2 dc 0
+
+vsup vdd gnd dc 1.8
+
+*.dc Vout 0 1.8 0.01
+.dc Iin 20u 200u 1u
+
+.control
+run
+set color0=white
+*plot i(Vcm1) i(Vcm2)
+*plot deriv(i(Vcm2))
+***Gate Voltage***
+plot v(Gn)
+plot i(Vcm1) i(Vcm2)
+plot deriv(v(Gn))
+.end
+.endc
+```
+### DC Analysis
+
+```
+*********************** Simple Current Mirror **********************
+******************************* DC ANALYSIS **************************
+*********************** Date : 25/11/2025, Designer: Chandan Shaw  ****************************
+
+.title Simple Current Mirror Using N_Channel MOSFET
+
+.lib /home/chandanvlsi/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+
+.global gnd gnd
+.temp 27
+
+xmn1 Gn Gn gnd gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=4
+xmn2 Dn2 Gn gnd gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=4
+Iin Cn1 Gn dc 100u
+Vout out gnd dc 0.835
+
+Vcm1 vdd Cn1 dc 0
+Vcm2 Out Dn2 dc 0
+
+vsup vdd gnd dc 1.8
+
+.dc Vout 0 1.8 0.01
+*.dc Iin 20u 200u 1u
+
+.control
+run
+set color0=white
+plot i(Vcm1) i(Vcm2)
+plot 1/deriv(i(Vcm2))
+***Gate Voltage***
+plot v(Gn)
+.end
+.endc
+```
