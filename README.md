@@ -652,4 +652,19 @@ Characterization is usually performed post-design (pre- and post-fabrication) to
  .end
  .endc
  ```
+
+ ## Single Stage Amplifiers
+ - A single-stage amplifier is the simplest form of amplifier — it uses just one active device (like a BJT, MOSFET, or JFET) along with biasing and load components to amplify a weak input signal into a stronger output signal.
+ - The term single stage means the signal passes through only one amplifying device before reaching the output.
+
+ ### Advantages
+ - Simple design — easy to understand and build.
+ - Low cost — fewer components.
+ - Foundation for multi-stage amplifiers.
+
+ ### Disadvantages
+ - Limited gain — can’t amplify very weak signals to large values in one stage.
+ - Lower input/output impedance control — may not match all sources/loads.
+ - Limited bandwidth — affected by transistor parasitics and load capacitance.
+ - Noisy — more susceptible to noise compared to differential stages
  
