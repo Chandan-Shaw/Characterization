@@ -489,3 +489,128 @@ Characterization is usually performed post-design (pre- and post-fabrication) to
  .end
  .endc
  ```
+
+ ### DC Analysis
+
+ ```
+ *********************** NMOS Cascode Current Mirror **********************
+ ******************************* DC ANALYSIS **************************
+ *********************** Date : 25/11/2025, Designer: Chandan Shaw  ****************************
+
+ .title Cascode Current Mirror Using N_Channel MOSFET
+
+ .lib /home/chandanvlsi/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+
+ .global gnd gnd
+ .temp 27
+
+ xmn1 Gn Gn gnd gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=4
+ xmn2 Dn2 Gn gnd gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=4
+ xmn3 Dn3 Dn3 Gn gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=4
+ xmn4 Dn4 Dn3 Dn2 gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=4
+
+ Iin Cn1 Dn3 dc 100u
+ Vout Out gnd dc 0.84
+
+ Vcm1 vdd Cn1 dc 0
+ Vcm2 Out Dn4 dc 0
+
+ vsup vdd gnd dc 1.8
+
+ .dc Iin 0 200u 1u
+
+ .control
+ run
+ set color0=white
+ plot i(Vcm1) i(Vcm2)
+ plot v(Gn) v(Dn3) v(Dn2)
+ plot deriv(v(Gn))
+ plot deriv(v(Dn3))
+ .end
+ .endc
+ ```
+
+ ## Wide Swing Cascode Current Mirror
+
+ ### DC Analysis
+ ```
+ ********************************* Wide Swing Cascode Current Mirror Using NMOS *********************************
+ ************************ DC ANALYSIS ***************************
+ ************* Date: 11/01/2026 , Designer: Chandan Shaw , Silicon University Bhubaneshwar ********************
+
+ .title Wide Swing Cascode Current Mirror Using N Channel MOSFET
+
+ .lib /home/chandanvlsi/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+
+ .global gnd
+ .temp 27
+
+ xmn1 Dn1 Gn gnd gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=4
+ xmn2 Dn2 Gn gnd gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=4
+ xmn3 Gn Dn5 Dn1 gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=4
+ xmn4 Dn4 Dn5 Dn2 gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=4
+ xmn5 Dn5 Dn5 gnd gnd sky130_fd_pr__nfet_01v8 w=5 l=8 m=4
+
+ Iin1 Cn1 Gn dc 100u
+ Iin2 Cn2 Dn5 dc 100u
+
+ Vout Out gnd dc 0.84
+
+ Vcm1 vdd Cn1 dc 0
+ Vcm2 Out Dn4 dc 0
+ Vcm3 vdd Cn2 dc 0
+
+ Vsup vdd gnd dc 1.8
+
+ .dc Vout 0 1.8 0.01
+ 
+ .control
+ run
+ set color0=white
+ plot i(Vcm1) i(Vcm2) i(Vcm3)
+ plot 1/deriv(i(Vcm2))
+ plot v(Dn5) v(Dn1) v(Gn) v(Dn2)
+ .end
+ .endc
+ ```
+
+ ## Self Baised Wide Swing Cascode Current Mirror
+
+ ### DC Analysis
+ 
+ ```
+ ************************ Self Baised Wide Swing Cascode Current Mirror Using NMOS *********************************
+ ************************ DC ANALYSIS ***************************
+ ************* Date: 11/01/2026 , Designer: Chandan Shaw , Silicon University Bhubaneshwar ********************
+
+ .title Self Baised Wide Swing Cascode Current Mirror Using N Channel MOSFET
+
+ .lib /home/chandanvlsi/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+
+ .global gnd
+ .temp 27
+
+ xmn1 Dn1 Gn gnd gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=4
+ xmn2 Dn2 Gn gnd gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=4
+ xmn3 Gn Rt1 Dn1 gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=4
+ xmn4 Dn4 Rt1 Dn2 gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=4
+ Ron Rt1 Gn 3k
+ Iin Cn1 Rt1 dc 100u
+
+ Vout Out gnd dc 0.84
+ Vcm1 vdd Cn1 dc 0
+ Vcm2 Out Dn4 dc 0
+
+ Vsup vdd gnd dc 1.8
+ .dc Vout 0 1.8 0.01
+
+ .control
+ run
+ set color0=white
+ plot i(Vcm1) i(Vcm2)
+ plot 1/deriv(i(Vcm2))
+ plot v(Dn1) v(Gn) v(Dn2) v(Rt1)
+ .end
+ .endc
+ ```
+ 
