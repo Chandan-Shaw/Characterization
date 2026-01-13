@@ -291,10 +291,26 @@ Characterization is usually performed post-design (pre- and post-fabrication) to
 
   ## Simple Current Mirror
 
+  - A current mirror is an analog circuit that copies (or "mirrors") a reference current from one branch of a circuit into another branch, maintaining a constant output current regardless of the load resistance (within limits).
+  - It’s widely used in biasing circuits, active loads, and current-mode logic.
+  - Implemented using matched transistors (BJTs or MOSFETs).
+  - Key Idea : If two transistors are perfectly matched and have the same VGS then they will conduct the same drain/collector current.
+  ### Advantages
+  - Accurate current replication (when devices are matched and well-designed).
+  - High output impedance - good for biasing and active loads.
+  - Compact design — no need for large resistors.
+  - Scalable — easy to generate multiple identical or scaled currents.
+  - Temperature tracking — matched devices track each other’s thermal changes.
+  ### Disadvantages
+  - Device mismatch causes current errors.
+  - Finite output resistance leads to current variation.
+  - Voltage headroom requirement (especially in cascode types).
+  - Temperature dependence — though better than resistors, still affected.
+  - Limited accuracy at very low currents due to leakage and mismatch.
+  - 
   ### AC Analysis
 
   ```
-    
   *********************** Simple Current Mirror **********************
   ******************************* DC ANALYSIS **************************
   ************ Date : 25/11/2025, Designer: Chandan Shaw, Silicon University Bhubaneswar ************
