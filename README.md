@@ -321,6 +321,16 @@ Characterization is usually performed post-design (pre- and post-fabrication) to
   | **Design Complexity**                   | Very Low                                 | Medium                                        | Medium–High                                     | High                                            |
   | **Best Use Case**                       | Simple biasing, low supply voltage       | High-accuracy bias, high supply voltage       | High-accuracy bias with better swing            | On-chip bias network without external reference |
 
+
+  ## 🔷 Comparison of Current Mirrors
+
+  | Type | Advantages | Disadvantages |
+  |------|------------|---------------|
+  | **Simple Current Mirror** | - Very simple design<br>- Requires minimum components (2 matched transistors)<br>- Low area and power consumption | - Low output resistance (poor current matching for varying VOUT)<br>- Sensitive to channel length                 modulation<br>- Accuracy depends heavily on device matching |
+  | **Cascode Current Mirror** | - Very high output resistance → better current matching<br>- Reduced channel length modulation effect<br>- Improved accuracy over simple mirror | - Requires higher voltage headroom (~2 × VDS(sat))<br>- Slightly more complex       design (4 transistors)<br>- Larger area |
+  | **Wide-Swing Cascode Current Mirror** | - High output resistance like cascode<br>- Allows larger output voltage swing compared to standard cascode<br>- Better for low supply voltage than standard cascode | - Still more complex than simple mirror<br>-         Requires careful biasing for correct operation<br>- Voltage headroom still higher than simple mirror (but less than normal cascode) |
+  | **Self-Biased Current Mirror** | - No need for an external bias voltage (bias generated internally)<br>- Compact bias network for multiple mirrors<br>- Good matching due to internal reference sharing | - More complex circuit than basic mirror<br>- Output     resistance depends on internal bias design<br>- Less flexible if different bias currents are needed in different parts of the circuit |
+
   ### AC Analysis
 
   ```
