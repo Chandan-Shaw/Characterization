@@ -31,7 +31,7 @@ Characterization is usually performed post-design (pre- and post-fabrication) to
 [Ngspice Reference Manual](https://ngspice.sourceforge.io/docs/ngspice-html-manual/manual.xhtml): Complete reference manual in HTML format.
 
 ### Xschem
-![Diagram]()
+![Diagram](https://github.com/Chandan-Shaw/Characterization/blob/main/Xschem.png)
 
 [Xschem](https://xschem.sourceforge.io/stefan/) is an open-source schematic capture tool for VLSI and electronics. It is designed to be lightweight, fast, and capable of handling large hierarchical circuits while remaining user-friendly.
 
