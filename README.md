@@ -47,6 +47,75 @@ The PDK we are going to use is [Google Skywater 130nm PDK](https://skywater-pdk.
 
 Device Details: [docs](https://skywater-pdk.readthedocs.io/en/main/rules/device-details.html)
 
+## 1.3 Install and Setup EDA Tools
+## Windows Subsystem for Linux (WSL) for Open Source EDA tools
+
+Windows Subsystem for Linux (WSL) is a feature of Windows that allows you to run a Linux environment on your Windows machine, without the need for a separate virtual machine or dual booting. With native X11 (graphics) support on WSL2, the latest WSL, in **Winodws 10 version 2004+ (Build 19041+)** or **Windows 11**, you can now run GUI apps including all the open-source EDA tools.
+
+Now we will share instructions for installing WSL2 on Winodws 10/11 and install the EDA tools on a **Ubuntu 24.04** distribution.
+
+## Install WSL
+- **Prerequisites**: Winodws 10 version 2004+ (Build 19041+) or Windows 11
+- If you have a previous WSL installed without your knowledge or, you've installed in from the _Microsoft Store_, it's best you **uninstall** it using the Windows "Add/remove Programs" app and/or `wsl --uninstall`
+- Open PowerShell or Windows Command Prompt in **ADMINISTRATOR** mode by right-clicking and selecting "Run as administrator"
+- In the PowerShell type `wsl --list --online`
+  - This will list all the available distributions online. 
+- To install a particular distribution (Distro) say `Ubuntu-24.04` (The name has to be exactly as printed in the above command):
+  - `wsl --install -d Ubuntu-24.04`
+- It's important to update the WSL now by typing the following in the Powershell:
+  - `wsl --update`
+- And shut it down: `wsl --shutdown`. Note: it will automatically start when the WSL distro selected from the Windows menu.
+
+## Launching Ubuntu 24.04. 
+
+- `Press Windows Key → select Ubuntu 24.04.`
+- Update the system
+```
+sudo apt update && sudo apt upgrade -y
+```
+- Clone the Github Repository
+```
+cd ~
+git clone https://github.com/silicon-vlsi/SI-2025-AnalogIC.git
+
+```
+- Copy & make install scripts executable
+```
+cp ~/SI-2025-AnalogIC/install*.sh .
+chmod +x install*.sh
+```
+- Install dependencies & EDA tools
+```
+./install-libs.sh
+./install-eda.sh
+```
+- Add EDA environment variables
+```
+cat ~/SI-2025-AnalogIC/bashrc-eda >> ~/.bashrc
+source ~/.bashrc
+```
+- Setup Xschem initialization
+```
+cp ~/share/xschemrc ~/.xschem/xschemrc
+```
+- Then type this command: 
+``` 
+tree -L 2
+```
+**Directory Structure** after installation should look like this:
+```bash
+share
+└── pdk
+cad
+├── eda-magic
+├── eda-netgen
+├── eda-ngspice
+└── eda-xschem
+work
+└── xschem
+.xschem/
+└── simulations
+```
 
 
  ## 1. Basic Concept
