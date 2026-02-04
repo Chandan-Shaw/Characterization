@@ -24,9 +24,10 @@ Characterization is usually performed post-design (pre- and post-fabrication) to
  - Schematic Editor - [[Xschem](https://xschem.sourceforge.io/stefan/index.html)]
 
 ### Ngspice
-![Diagram](Logo/Ngspice.png)
+![Diagram](https://github.com/Chandan-Shaw/Characterization/blob/main/Ngspice.png)
 
 [Ngspice](http://ngspice.sourceforge.net/devel.html) is the open source spice simulator for electric and electronic circuits. Ngspice is an open project, there is no closed group of developers.
+[Ngspice Reference Manual](https://ngspice.sourceforge.io/docs/ngspice-html-manual/manual.xhtml): Complete reference manual in HTML format.
 
  ## 1. Basic Concept
 
