@@ -27,7 +27,15 @@ Characterization is usually performed post-design (pre- and post-fabrication) to
 ![Diagram](https://github.com/Chandan-Shaw/Characterization/blob/main/Ngspice.png)
 
 [Ngspice](http://ngspice.sourceforge.net/devel.html) is the open source spice simulator for electric and electronic circuits. Ngspice is an open project, there is no closed group of developers.
+
 [Ngspice Reference Manual](https://ngspice.sourceforge.io/docs/ngspice-html-manual/manual.xhtml): Complete reference manual in HTML format.
+
+### Xschem
+![Diagram]()
+
+[Xschem](https://xschem.sourceforge.io/stefan/) is an open-source schematic capture tool for VLSI and electronics. It is designed to be lightweight, fast, and capable of handling large hierarchical circuits while remaining user-friendly.
+
+[Xschem Reference Manual](https://xschem.sourceforge.io/stefan/xschem_man/xschem_man.html): Complete reference manual in HTML format.
 
  ## 1. Basic Concept
 
