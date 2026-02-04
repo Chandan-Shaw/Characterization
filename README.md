@@ -37,6 +37,16 @@ Characterization is usually performed post-design (pre- and post-fabrication) to
 
 [Xschem Reference Manual](https://xschem.sourceforge.io/stefan/xschem_man/xschem_man.html): Complete reference manual in HTML format.
 
+## 1.2 PDK Required
+
+A process design kit (PDK) is a set of files used within the semiconductor industry to model a fabrication process for the design tools used to design an integrated circuit. The PDK is created by the foundry defining a certain technology variation for their processes. It is then passed to their customers to use in the design process.
+
+The PDK we are going to use is [Google Skywater 130nm PDK](https://skywater-pdk.readthedocs.io/en/main/).
+
+![Diagram]()
+
+Device Details: [docs](https://skywater-pdk.readthedocs.io/en/main/rules/device-details.html)
+
  ## 1. Basic Concept
 
  ### 1.1 Charge
