@@ -22,6 +22,12 @@ Characterization is usually performed post-design (pre- and post-fabrication) to
  For the simulation of circuits we will need the following tools.
  - Spice netlist simulation - [[Ngspice](https://ngspice.sourceforge.io/)]
  - Schematic Editor - [[Xschem](https://xschem.sourceforge.io/stefan/index.html)]
+
+### Ngspice
+![Diagram](Logo/Ngspice.png)
+
+[Ngspice](http://ngspice.sourceforge.net/devel.html) is the open source spice simulator for electric and electronic circuits. Ngspice is an open project, there is no closed group of developers.
+
  ## 1. Basic Concept
 
  ### 1.1 Charge
