@@ -15,7 +15,13 @@ Characterization is usually performed post-design (pre- and post-fabrication) to
 - Temperature Corners: Measuring across temperature range (e.g., -40°C to 125°C).
 
 --------------------------------------------------------------------------------------------------------
-## Content
+# Content
+## 1. Tools And PDK SetUp
+ 
+ ## 1.1 Tools Required
+ For the simulation of circuits we will need the following tools.
+ - Spice netlist simulation - [[Ngspice](https://ngspice.sourceforge.io/)]
+ - Schematic Editor - [[Xschem](https://xschem.sourceforge.io/stefan/index.html)]
  ## 1. Basic Concept
 
  ### 1.1 Charge
