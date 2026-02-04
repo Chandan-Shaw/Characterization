@@ -43,9 +43,11 @@ A process design kit (PDK) is a set of files used within the semiconductor indus
 
 The PDK we are going to use is [Google Skywater 130nm PDK](https://skywater-pdk.readthedocs.io/en/main/).
 
-![Diagram]()
+![Diagram](https://github.com/Chandan-Shaw/Characterization/blob/main/SKY130_PDK.png)
 
 Device Details: [docs](https://skywater-pdk.readthedocs.io/en/main/rules/device-details.html)
+
+
 
  ## 1. Basic Concept
 
