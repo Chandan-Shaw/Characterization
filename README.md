@@ -210,6 +210,7 @@ print RES
 .end
 ```
 
+![Diagram](https://github.com/Chandan-Shaw/Characterization/blob/main/Resistor%20Value.png)
 
 ### 3.2 Capacitors
  A capacitor is a passive electrical component that stores energy in the form of an electric field, defined by the relation: `` Q = C * V ``, where C is the capacitance in **Farads**.
