@@ -175,6 +175,12 @@ Voltage between two pont a & b is as:  `` Vab = dw/dq ``  ( 1 Volt = 1 Joule/Cou
  **Used of Resistor**
  - Its main use is to limit or control the flow of electric current in a circuit.
  - To set biasing in amplifiers
+ 
+### Types of Resistors available :
+- ``sky130_fd_pr__res_high_po.model`` has base models with *0.35u, 0.69u, 1.41u, 2.85u, 5.73u* as **bin width** (fixed) with changable lengths. 
+- ``sky130_fd_pr__res_xhigh_po.model`` also has base models with *0.35u, 0.69u, 1.41u, 2.85u, 5.73u* as **bin width** (fixed) with changable lengths.
+- ``sky130_fd_pr__res_generic_nd.model`` is a Generic N-diff type resister.
+- ``sky130_fd_pr__res_generic_pd.model`` is a Generic P-diff type resister.
 
 ### 3.2 Capacitors
  A capacitor is a passive electrical component that stores energy in the form of an electric field, defined by the relation: `` Q = C * V ``, where C is the capacitance in **Farads**.
