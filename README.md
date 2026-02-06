@@ -184,6 +184,33 @@ Voltage between two pont a & b is as:  `` Vab = dw/dq ``  ( 1 Volt = 1 Joule/Cou
 
 ![Diagram](https://github.com/Chandan-Shaw/Characterization/blob/main/Resistor.jpg)
 
+#### Netlist Code Of Resistor Simulation
+```
+************************ Resistor Simulation *********************
+***** Date: 01/01/2026, Designer: Chandan Shaw , Silicon University, Bhubaneshwar ******
+
+.title Resistor Simulation
+.lib /home/chandanvlsi/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.temp 25
+
+Vin     in      0       DC 1.8
+Vcm      in      1       0
+X1      1       0       vdd   sky130_fd_pr__res_high_po_0p35 L=3.5
+vsup    vdd     gnd     DC 1.8
+.dc Vin 0 1.8 0.01
+
+.op
+.control
+run
+print v(in)
+print abs(i(Vcm))
+let RES = v(in)/abs(i(Vcm))
+print RES
+.endc
+.end
+```
+
+
 ### 3.2 Capacitors
  A capacitor is a passive electrical component that stores energy in the form of an electric field, defined by the relation: `` Q = C * V ``, where C is the capacitance in **Farads**.
 
