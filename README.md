@@ -182,6 +182,8 @@ Voltage between two pont a & b is as:  `` Vab = dw/dq ``  ( 1 Volt = 1 Joule/Cou
 - ``sky130_fd_pr__res_generic_nd.model`` is a Generic N-diff type resister.
 - ``sky130_fd_pr__res_generic_pd.model`` is a Generic P-diff type resister.
 
+![Diagram](https://github.com/Chandan-Shaw/Characterization/blob/main/Resistor.jpg)
+
 ### 3.2 Capacitors
  A capacitor is a passive electrical component that stores energy in the form of an electric field, defined by the relation: `` Q = C * V ``, where C is the capacitance in **Farads**.
 
