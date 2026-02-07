@@ -210,7 +210,23 @@ print RES
 .end
 ```
 
-![Diagram](https://github.com/Chandan-Shaw/Characterization/blob/main/Resistor%20Value.png)
+```
+*********************** Characterization Of Resistance *********************
+********* Designer: Chandan Shaw, Silicon University Bhubaneshwar **********
+
+.global vdd gnd
+.temp 27
+
+R1 1 gnd 1k
+Vin in gnd dc 1
+Vcm in 1 dc 0
+.dc vin 0 1 0.01
+.control
+run
+plot i(Vcm) xlabel 'Temperature' ylabel 'Current (mA)'
+.endc
+.end
+```
 
 ### 3.2 Capacitors
  A capacitor is a passive electrical component that stores energy in the form of an electric field, defined by the relation: `` Q = C * V ``, where C is the capacitance in **Farads**.
@@ -252,16 +268,16 @@ plot v(in) v(out)
 .end
 ```
 
-  #### Plot Of Vin And Vout
+#### Plot Of Vin And Vout
   
-  ![Diagram](https://github.com/Chandan-Shaw/Characterization/blob/main/RC_Simulation.png)
+![Diagram](https://github.com/Chandan-Shaw/Characterization/blob/main/RC_Simulation.png)
 
-  ### 3.3 RC Circuit
-  - An RC circuit is an electrical circuit made of **R — Resistor** & **C — Capacitor** connected either in series or parallel, which exhibit a time-dependent response to voltage or current changes. The     fundamental time constant is defined as:  
-    `τ = R * C`, where `τ` (tau) represents the **time constant** in seconds, indicating how quickly the circuit charges or discharges.
-  - In the **Skywater SKY130 PDK**, **RC circuits** are implemented using integrated resistors (e.g.,`sky130_fd_pr__res_high_po`) and capacitors (e.g.,`sky130_fd_pr__cap_mim_m3_1`). These are critical in    analog and mixed-signal design applications such as filters, timing circuits, and analog front ends.
+### 3.3 RC Circuit
+  - An RC circuit is an electrical circuit made of **R — Resistor** & **C — Capacitor** connected either in series or parallel, which exhibit a time-dependent response to voltage or current changes. The     fundamental time constant is defined as:
+     `τ = R * C`, where `τ` (tau) represents the **time constant** in seconds, indicating how quickly the circuit charges or discharges.
+- In the **Skywater SKY130 PDK**, **RC circuits** are implemented using integrated resistors (e.g.,`sky130_fd_pr__res_high_po`) and capacitors (e.g.,`sky130_fd_pr__cap_mim_m3_1`). These are critical in    analog and mixed-signal design applications such as filters, timing circuits, and analog front ends.
 
-  ![Diagram](https://github.com/Chandan-Shaw/Characterization/blob/main/RC%20Circuit.JPG)
+ ![Diagram](https://github.com/Chandan-Shaw/Characterization/blob/main/RC%20Circuit.JPG)
  
   #### 3.3.1 Transient Analysis
   ```
