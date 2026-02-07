@@ -227,7 +227,7 @@ plot i(Vcm) xlabel 'Temperature' ylabel 'Current (mA)'
 .endc
 .end
 ```
-https://github.com/Chandan-Shaw/Characterization/blob/main/RC_Simulation.png
+![Diagram](https://github.com/Chandan-Shaw/Characterization/blob/main/Resistor%20Simulation.png)
 ### 3.2 Capacitors
  A capacitor is a passive electrical component that stores energy in the form of an electric field, defined by the relation: `` Q = C * V ``, where C is the capacitance in **Farads**.
 
