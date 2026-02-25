@@ -171,6 +171,7 @@ Voltage between two pont a & b is as:  `` Vab = dw/dq ``  ( 1 Volt = 1 Joule/Cou
  The resistance value is measured in **Ohms (Ω)**
  
  Given by Ohm’s Law:   `` V=I×R `` 
+ 
  **Important Point** :- By the resistance we can control the current.
   
  **Used of Resistor**
