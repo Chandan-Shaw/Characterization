@@ -171,6 +171,7 @@ Voltage between two pont a & b is as:  `` Vab = dw/dq ``  ( 1 Volt = 1 Joule/Cou
  The resistance value is measured in **Ohms (Ω)**
  
  Given by Ohm’s Law:   `` V=I×R `` 
+ **Important Point** :- By the resistance we can control the current.
   
  **Used of Resistor**
  - Its main use is to limit or control the flow of electric current in a circuit.
@@ -418,10 +419,9 @@ plot v(in) v(out)
  - A MOSFET(Metal-Oxide-Semiconductor Field-Effect Transistor) has four terminal device:- Gate, Drain, Source, Body.
  - MOSFET is device used for switching and amplification, Its current is controlled by the voltage applied to the gate terminal.
  - The MOSFET operates in three regions: **cutoff, linear, and saturation**, depending on gate-source (VGS) and drain-source (VDS) voltages.
- - In the Skywater SKY130 PDK, MOSFETs like ``sky130_fd_pr__nfet_01v8`` (NMOS) and ``sky130_fd_pr__pfet_01v8`` (PMOS) are commonly used. These are essential in digital logic, analog amplifiers, and
- switching applications.
- 
- 
+ - In the Skywater SKY130 PDK, MOSFETs like ``sky130_fd_pr__nfet_01v8`` (NMOS) and ``sky130_fd_pr__pfet_01v8`` (PMOS) are commonly used. These are essential in digital logic, analog amplifiers, and switching applications.
+ - 
+**Important Point** :- MOSFET does not behave like a Inductor, But we can design a inductor by the help of MOSFET Circuit
    
   ## 1. CMOS
   
