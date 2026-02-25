@@ -487,6 +487,66 @@ plot  I(vid) xlabel "VDS (V)"  ylabel "ID (A)" title "ID vs VDS"
 .endc
 .end
 ```
+
+#### Netlist Code Of PMOS Analysis for ID vs VGS 
+
+```
+****************************** PMOS Analysis Of MOSFET **************************************
+******** Date: 20/12/2025 , Designer: Chandan Shaw , Silicon University, Bhubaneswar ********
+
+.lib /home/chandanvlsi/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.temp 27
+
+* Bias sources
+VS      s       0       1.8 ; Source at 1.8 V
+VG      g       0       0   ; Gate
+VD      d       0       0   ; Drain at 0 V
+
+* PMOS: D  G  S  B
+X1 d g s s sky130_fd_pr__pfet_01v8 w=1 l=0.15
+
+.control
+run
+save all
+
+*ID vs VGS Curve
+dc VG 0 1.8 0.01 VD 0 1.8 0.1
+plot I(VD) xlabel "VGS (V)" ylabel "ID (A)" title "PMOS ID vs VGS"
+
+.endc
+.end
+```
+
+#### Netlist Code Of PMOS Analysis for ID vs VDS Curve
+
+```
+****************************** PMOS Analysis Of MOSFET **************************************
+******** Date: 20/12/2025 , Designer: Chandan Shaw , Silicon University, Bhubaneswar ********
+
+.lib /home/chandanvlsi/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.temp 27
+
+* Bias sources
+VS      s       0       1.8 ; Source at 1.8 V
+VG      g       0       0   ; Gate
+VD      d       0       0   ; Drain at 0 V
+
+* PMOS: D  G  S  B
+X1 d g s s sky130_fd_pr__pfet_01v8 w=1 l=0.15
+
+.control
+
+run
+save all
+
+*ID vs VDS Curve
+dc VD 0 1.8 0.01 VG 0 1.8 0.1
+plot I(VD) xlabel "VDS (V)" ylabel "ID (A)" title "PMOS ID vs VDS"
+
+.endc
+.end
+```
+
 ## 1. CMOS
   
 ### What Is CMOS ?
