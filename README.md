@@ -421,83 +421,148 @@ plot v(in) v(out)
  - MOSFET is device used for switching and amplification, Its current is controlled by the voltage applied to the gate terminal.
  - The MOSFET operates in three regions: **cutoff, linear, and saturation**, depending on gate-source (VGS) and drain-source (VDS) voltages.
  - In the Skywater SKY130 PDK, MOSFETs like ``sky130_fd_pr__nfet_01v8`` (NMOS) and ``sky130_fd_pr__pfet_01v8`` (PMOS) are commonly used. These are essential in digital logic, analog amplifiers, and switching applications.
- - 
+
 **Important Point** :- MOSFET does not behave like a Inductor, But we can design a inductor by the help of MOSFET Circuit
-   
-  ## 1. CMOS
-  
-  ### What Is CMOS ?
-  CMOS (Complementary Metal–Oxide–Semiconductor) is a technology used to build most modern digital chips — like
-  processors, memory, and logic circuits.
 
-  CMOS is a semiconductor technology that uses complementary NMOS and PMOS transistors to build low-power, high-speed
-  digital and analog circuits.
+### 4.1 NMOS Analysis
+
+- A **NMOS** (N-type MOSFET) is a majority-carrier device where current flows between the drain and source when a positive voltage is applied to the gate. It acts as a voltage-controlled current source.
+- The drain current (I<sub>D</sub>) depends on the gate-to-source voltage (V<sub>GS</sub>), and its behavior changes across three regions:
+- Cutoff: V<sub>GS</sub> < V<sub>th</sub>, I<sub>D</sub> ≈ 0
+- Linear: V<sub>GS</sub> > V<sub>th</sub> and V<sub>DS</sub> < V<sub>GS</sub> − V<sub>th</sub>
+- Saturation: V<sub>DS</sub> ≥ V<sub>GS</sub> − V<sub>th</sub>
+- The I<sub>D</sub>-V<sub>GS</sub> curve shows how the drain current increases with gate voltage (at constant V<sub>DS</sub>), helping identify the threshold voltage (V<sub>th</sub>), where the transistor starts conducting. This     curve is essential for characterizing the device and is often used in DC sweep simulations.
+- In the Skywater SKY130 PDK, NMOS devices like `sky130_fd_pr__nfet_01v8` are used in logic gates, analog blocks, and current sources.
+
+#### Netlist Code Of NMOS Analysis for ID vs VGS Curve
+
+```
+****************************** NMOS Analysis Of MOSFET **************************************
+******** Date: 20/12/2025 , Designer: Chandan Shaw , Silicon University, Bhubaneswar ********
+
+.lib /home/chandanvlsi/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.temp 27
+
+Vd      1       0       DC 1.8
+Vid     1       d       DC 0
+Vg      g       0       DC 0
+
+* NMOS: D G S B
+X1      d       g       0       0       sky130_fd_pr__nfet_01v8 w=0.42 l=1
+
+.control
+run
+save all
+
+dc vg 0 1.8 0.001 vd 0 1.8 0.1
+plot  I(vid) xlabel "VGS (V)"  ylabel "ID (A)" title "ID vs VGS"
+
+.endc
+.end
+```
+
+#### Netlist Code Of NMOS Analysis for ID vs VDS Curve
+
+```
+****************************** NMOS Analysis Of MOSFET **************************************
+******** Date: 20/12/2025 , Designer: Chandan Shaw , Silicon University, Bhubaneswar ********
+
+.lib /home/chandanvlsi/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.temp 27
+
+Vd      1       0       DC 1.8
+Vid     1       d       DC 0
+Vg      g       0       DC 0
+
+* NMOS: D G S B
+X1      d       g       0       0       sky130_fd_pr__nfet_01v8 w=0.42 l=1
+
+.control
+run
+save all
+
+dc vd 0 1.8 0.001 vg 0 1.8 0.1
+plot  I(vid) xlabel "VDS (V)"  ylabel "ID (A)" title "ID vs VDS"
+
+.endc
+.end
+```
+## 1. CMOS
   
-  It Uses two types OF MOSFET Operation:
-  - **PMOS(Positive Type)**
-  - **NMOS(Negative Type)**
+### What Is CMOS ?
+CMOS (Complementary Metal–Oxide–Semiconductor) is a technology used to build most modern digital chips — like
+processors, memory, and logic circuits.
+
+CMOS is a semiconductor technology that uses complementary NMOS and PMOS transistors to build low-power, high-speed
+digital and analog circuits.
+  
+It Uses two types OF MOSFET Operation:
+- **PMOS(Positive Type)**
+- **NMOS(Negative Type)**
     
-  They work together in a CMOS: - When one is **ON** then Other is **OFF.**
+They work together in a CMOS: - When one is **ON** then Other is **OFF.**
 
-  ### Why CMOS is important ?
-  - Very Low Power Consumption
-  - High Speed
-  - High Packing Density ( Many Circuits on a small Chip. )
-  - Reliability
+### Why CMOS is important ?
+- Very Low Power Consumption
+- High Speed
+- High Packing Density ( Many Circuits on a small Chip. )
+- Reliability
 
-    It is used in like ***Microprocessors***,***Smartphone***,***Digital Logic Circuits***,***Memory Chips.***
-
-
-  ## Simple Current Mirror
-
-  - A current mirror is an analog circuit that copies (or "mirrors") a reference current from one branch of a circuit into another branch, maintaining a constant output current regardless of the load resistance (within limits).
-  - It’s widely used in biasing circuits, active loads, and current-mode logic.
-  - Implemented using matched transistors (BJTs or MOSFETs).
-  - Key Idea : If two transistors are perfectly matched and have the same VGS then they will conduct the same drain/collector current.
-  ### Advantages
-  - Accurate current replication (when devices are matched and well-designed).
-  - High output impedance - good for biasing and active loads.
-  - Compact design — no need for large resistors.
-  - Scalable — easy to generate multiple identical or scaled currents.
-  - Temperature tracking — matched devices track each other’s thermal changes.
-  ### Disadvantages
-  - Device mismatch causes current errors.
-  - Finite output resistance leads to current variation.
-  - Voltage headroom requirement (especially in cascode types).
-  -  Temperature dependence — though better than resistors, still affected.
-  - Limited accuracy at very low currents due to leakage and mismatch.
-
-  ### feature of different type of current mirror
-
-  | **Feature**                             | **Simple Current Mirror**                | **Cascode Current Mirror**                    | **Wide-Swing Cascode Current Mirror**           | **Self-Biased Current Mirror**                  |
-  | --------------------------------------- | ---------------------------------------- | --------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-  | **Output Resistance (r<sub>out</sub>)** | Low   | Very High  | Very High    | High                   |
-  | **Accuracy (Current Matching)**         | Low–Medium | High                                          | High                                            | Medium–High                                     |
-  | **Voltage Headroom Requirement**        | Low (\~V<sub>DS(sat)</sub>)              | High (\~2 × V<sub>DS(sat)</sub>)              | Medium (\~V<sub>DS(sat)</sub> + V<sub>ov</sub>) | Medium–High (depends on topology)               |
-  | **Output Voltage Swing**                | Large (good swing)                       | Small (limited due to cascoding)              | Large (improved over normal cascode)            | Medium                                          |
-  | **Channel Length Modulation Effect**    | High (bad)                               | Very Low (good)                               | Very Low (good)                                 | Low–Medium                                      |
-  | **Power Consumption**                   | Low                                      | Medium                                        | Medium                                          | Medium                                          |
-  | **Design Complexity**                   | Very Low                                 | Medium                                        | Medium–High                                     | High                                            |
-  | **Best Use Case**                       | Simple biasing, low supply voltage       | High-accuracy bias, high supply voltage       | High-accuracy bias with better swing            | On-chip bias network without external reference |
+It is used in like ***Microprocessors***,***Smartphone***,***Digital Logic Circuits***,***Memory Chips.***
 
 
-  ## 🔷 Comparison of Current Mirrors
+## Simple Current Mirror
 
-  | Type | Advantages | Disadvantages |
+- A current mirror is an analog circuit that copies (or "mirrors") a reference current from one branch of a circuit into another branch, maintaining a constant output current regardless of the load resistance (within limits).
+- It’s widely used in biasing circuits, active loads, and current-mode logic.
+- Implemented using matched transistors (BJTs or MOSFETs).
+- Key Idea : If two transistors are perfectly matched and have the same VGS then they will conduct the same drain/collector current.
+- 
+### Advantages
+- Accurate current replication (when devices are matched and well-designed).
+- High output impedance - good for biasing and active loads.
+- Compact design — no need for large resistors.
+- Scalable — easy to generate multiple identical or scaled currents.
+- Temperature tracking — matched devices track each other’s thermal changes.
+### Disadvantages
+- Device mismatch causes current errors.
+- Finite output resistance leads to current variation.
+- Voltage headroom requirement (especially in cascode types).
+-  Temperature dependence — though better than resistors, still affected.
+- Limited accuracy at very low currents due to leakage and mismatch.
+
+### feature of different type of current mirror
+
+| **Feature**                             | **Simple Current Mirror**                | **Cascode Current Mirror**                    | **Wide-Swing Cascode Current Mirror**           | **Self-Biased Current Mirror**                 |
+ | --------------------------------------- | ---------------------------------------- | --------------------------------------------- | ----------------------------------------------- | -------------------------------------------
+  --- |
+ | **Output Resistance (r<sub>out</sub>)** | Low   | Very High  | Very High    | High                   |
+ | **Accuracy (Current Matching)**         | Low–Medium | High                                          | High                                            | Medium–High                                     |
+ | **Voltage Headroom Requirement**        | Low (\~V<sub>DS(sat)</sub>)              | High (\~2 × V<sub>DS(sat)</sub>)              | Medium (\~V<sub>DS(sat)</sub> + V<sub>ov</sub>) | Medium–High (depends on topology)               |
+ | **Output Voltage Swing**                | Large (good swing)                       | Small (limited due to cascoding)              | Large (improved over normal cascode)            | Medium                                          |
+ | **Channel Length Modulation Effect**    | High (bad)                               | Very Low (good)                               | Very Low (good)                                 | Low–Medium                                      |
+ | **Power Consumption**                   | Low                                      | Medium                                        | Medium                                          | Medium                                          |
+ | **Design Complexity**                   | Very Low                                 | Medium                                        | Medium–High                                     | High                                            |
+ | **Best Use Case**                       | Simple biasing, low supply voltage       | High-accuracy bias, high supply voltage       | High-accuracy bias with better swing            | On-chip bias network without external reference |
+
+
+## 🔷 Comparison of Current Mirrors
+
+ | Type | Advantages | Disadvantages |
   |------|------------|---------------|
   | **Simple Current Mirror** | - Very simple design<br>- Requires minimum components (2 matched transistors)<br>- Low area and power consumption | - Low output resistance (poor current matching for varying VOUT)<br>- Sensitive to channel length                 modulation<br>- Accuracy depends heavily on device matching |
   | **Cascode Current Mirror** | - Very high output resistance → better current matching<br>- Reduced channel length modulation effect<br>- Improved accuracy over simple mirror | - Requires higher voltage headroom (~2 × VDS(sat))<br>- Slightly more complex       design (4 transistors)<br>- Larger area |
   | **Wide-Swing Cascode Current Mirror** | - High output resistance like cascode<br>- Allows larger output voltage swing compared to standard cascode<br>- Better for low supply voltage than standard cascode | - Still more complex than simple mirror<br>-         Requires careful biasing for correct operation<br>- Voltage headroom still higher than simple mirror (but less than normal cascode) |
   | **Self-Biased Current Mirror** | - No need for an external bias voltage (bias generated internally)<br>- Compact bias network for multiple mirrors<br>- Good matching due to internal reference sharing | - More complex circuit than basic mirror<br>- Output     resistance depends on internal bias design<br>- Less flexible if different bias currents are needed in different parts of the circuit |
 
-  ### AC Analysis
+ ### AC Analysis
 
-  ```
-  *********************** Simple Current Mirror **********************
-  ******************************* DC ANALYSIS **************************
-  ************ Date : 25/11/2025, Designer: Chandan Shaw, Silicon University Bhubaneswar ************
+ ```
+ *********************** Simple Current Mirror **********************
+ ******************************* DC ANALYSIS **************************
+ ************ Date : 25/11/2025, Designer: Chandan Shaw, Silicon University Bhubaneswar ************
 
-  .title Simple Current Mirror Using N_Channel MOSFET
+ .title Simple Current Mirror Using N_Channel MOSFET
 
   .lib /home/chandanvlsi/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt
 
