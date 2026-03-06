@@ -460,6 +460,7 @@ plot  I(vid) xlabel "VGS (V)"  ylabel "ID (A)" title "ID vs VGS"
 .endc
 .end
 ```
+![Diagram](https://github.com/Chandan-Shaw/Characterization/blob/main/NMOS_Id_Vgs%20Curve.png)
 
 #### Netlist Code Of NMOS Analysis for ID vs VDS Curve
 
@@ -487,6 +488,7 @@ plot  I(vid) xlabel "VDS (V)"  ylabel "ID (A)" title "ID vs VDS"
 .endc
 .end
 ```
+![Diagram](https://github.com/Chandan-Shaw/Characterization/blob/main/NMOS_Id_Vds%20Curve.png)
 
 #### Netlist Code Of PMOS Analysis for ID vs VGS 
 
@@ -516,6 +518,7 @@ plot I(VD) xlabel "VGS (V)" ylabel "ID (A)" title "PMOS ID vs VGS"
 .endc
 .end
 ```
+![Diagram](https://github.com/Chandan-Shaw/Characterization/blob/main/PMOS_Id_Vgs%20Curve.png)
 
 #### Netlist Code Of PMOS Analysis for ID vs VDS Curve
 
@@ -546,6 +549,7 @@ plot I(VD) xlabel "VDS (V)" ylabel "ID (A)" title "PMOS ID vs VDS"
 .endc
 .end
 ```
+![Diagram](https://github.com/Chandan-Shaw/Characterization/blob/main/PMOS_Id_Vds%20Curve.png)
 
 ## 1. CMOS
   
