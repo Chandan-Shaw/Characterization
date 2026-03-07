@@ -766,8 +766,9 @@ meas tran vmin MIN v(out)
 .end
 ```
 #### Simulation Of CMOS Inverter Fanout
-![Diagram](https://github.com/Chandan-Shaw/Characterization/blob/main/CMOS_Inverter_Fanout.png)
-## Simple Current Mirror
+![Diagram](https://github.com/Chandan-Shaw/Characterization/blob/main/CMOS_Inverter_Fanout_Value.png)
+
+## 6. Current Mirror
 
 - A current mirror is an analog circuit that copies (or "mirrors") a reference current from one branch of a circuit into another branch, maintaining a constant output current regardless of the load resistance (within limits).
 - It’s widely used in biasing circuits, active loads, and current-mode logic.
@@ -810,341 +811,594 @@ meas tran vmin MIN v(out)
   | **Cascode Current Mirror** | - Very high output resistance → better current matching<br>- Reduced channel length modulation effect<br>- Improved accuracy over simple mirror | - Requires higher voltage headroom (~2 × VDS(sat))<br>- Slightly more complex       design (4 transistors)<br>- Larger area |
   | **Wide-Swing Cascode Current Mirror** | - High output resistance like cascode<br>- Allows larger output voltage swing compared to standard cascode<br>- Better for low supply voltage than standard cascode | - Still more complex than simple mirror<br>-         Requires careful biasing for correct operation<br>- Voltage headroom still higher than simple mirror (but less than normal cascode) |
   | **Self-Biased Current Mirror** | - No need for an external bias voltage (bias generated internally)<br>- Compact bias network for multiple mirrors<br>- Good matching due to internal reference sharing | - More complex circuit than basic mirror<br>- Output     resistance depends on internal bias design<br>- Less flexible if different bias currents are needed in different parts of the circuit |
+### Simple Current Mirror
 
- ### AC Analysis
+### AC Analysis
 
- ```
- *********************** Simple Current Mirror **********************
- ******************************* DC ANALYSIS **************************
- ************ Date : 25/11/2025, Designer: Chandan Shaw, Silicon University Bhubaneswar ************
+```
+*********************** Simple Current Mirror **********************
+******************************* DC ANALYSIS **************************
+************ Date : 25/11/2025, Designer: Chandan Shaw, Silicon University Bhubaneswar ************
 
- .title Simple Current Mirror Using N_Channel MOSFET
+.title Simple Current Mirror Using N_Channel MOSFET
 
-  .lib /home/chandanvlsi/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.lib /home/chandanvlsi/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt
 
-  .global gnd gnd
-  .temp 27
+.global gnd gnd
+.temp 27
 
-  xmn1 Gn Gn gnd gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=4
-  xmn2 Dn2 Gn gnd gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=4
-  ***If we change l value suppose l=0.5 and m=4 then the output resistance is more and performance is better and more accurate and also the change of V(Gn) Voltage and input resistance will also change and deviation is more
-  Iin Cn1 Gn dc 100u
-  Vout out gnd dc 0.9
+xmn1 Gn Gn gnd gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=4
+xmn2 Dn2 Gn gnd gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=4
+***If we change l value suppose l=0.5 and m=4 then the output resistance is more and performance is better and more accurate and also the change of V(Gn) Voltage and input resistance will also change and deviation is more
+Iin Cn1 Gn dc 100u
+Vout out gnd dc 0.9
 
-  Vcm1 vdd Cn1 dc 0
-  Vcm2 Out Dn2 dc 0
+Vcm1 vdd Cn1 dc 0
+Vcm2 Out Dn2 dc 0
 
-  vsup vdd gnd dc 1.8 ac 1 sin(1.438 1m 100k)
-  .ac dec 20 1 1G
+vsup vdd gnd dc 1.8 ac 1 sin(1.438 1m 100k)
+.ac dec 20 1 1G
 
- .control
- run
- set color0=white
- plot v(out)
- plot i(Vcm1) i(Vcm2)
- plot ph((out)*180/pi)
- .end
- .endc
- ```
+.control
+run
+set color0=white
+plot v(out)
+plot i(Vcm1) i(Vcm2)
+plot ph((out)*180/pi)
+.end
+.endc
+```
 
- ### DC Analysis
+### DC Analysis
 
- ```
- *********************** Simple Current Mirror Using N-Channel MOSFET **********************
- ******************************* DC ANALYSIS **************************
- *********************** Date : 25/11/2025, Designer: Chandan Shaw , Silicon University  ****************************
+```
+*********************** Simple Current Mirror Using N-Channel MOSFET **********************
+******************************* DC ANALYSIS **************************
+*********************** Date : 25/11/2025, Designer: Chandan Shaw , Silicon University  ****************************
 
- .title Simple Current Mirror Using N_Channel MOSFET
+.title Simple Current Mirror Using N_Channel MOSFET
 
- .lib /home/chandanvlsi/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.lib /home/chandanvlsi/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt
 
- .global gnd gnd
- .temp 27
+.global gnd gnd
+.temp 27
 
- xmn1 Gn Gn gnd gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=4
- xmn2 Dn2 Gn gnd gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=4
+xmn1 Gn Gn gnd gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=4
+xmn2 Dn2 Gn gnd gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=4
 
- Iin Cn1 Gn dc 100u
- Vout out gnd dc 0.9
+Iin Cn1 Gn dc 100u
+Vout out gnd dc 0.9
+** Voltage Source
+Vcm1 vdd Cn1 dc 0
+Vcm2 Out Dn2 dc 0
+** Supply Voltage
+vsup vdd gnd dc 1.8 ac 1 sin(1.438 1m 100k)
+** Simulation Command
+.dc Vout 0 1.8 0.01
 
- ** Voltage Source
- Vcm1 vdd Cn1 dc 0
- Vcm2 Out Dn2 dc 0
+.control
+run
+set color0=white
+plot i(Vcm1) i(Vcm2)
+plot deriv(i(Vcm2))
+plot v(Gn)
+*plot ph((out)*180/pi)
+.end
+.endc
+```
 
- ** Supply Voltage
- vsup vdd gnd dc 1.8 ac 1 sin(1.438 1m 100k)
+### DC Analysis
 
- ** Simulation Command
- .dc Vout 0 1.8 0.01
+```
+*********************** Simple Current Mirror **********************
+******************************* DC ANALYSIS **************************
+*********************** Date : 25/11/2025, Designer: Chandan Shaw  ****************************
 
- .control
- run
- set color0=white
- plot i(Vcm1) i(Vcm2)
- plot deriv(i(Vcm2))
- plot v(Gn)
+.title Simple Current Mirror Using N_Channel MOSFET
+.lib /home/chandanvlsi/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt
 
- *plot ph((out)*180/pi)
- .end
- .endc
- ```
+.global gnd gnd
+.temp 27
 
- ### DC Analysis
+xmn1 Gn Gn gnd gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=4
+xmn2 Dn2 Gn gnd gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=4
+Iin Cn1 Gn dc 100u
+Vout out gnd dc 0.835
 
- ```
- *********************** Simple Current Mirror **********************
- ******************************* DC ANALYSIS **************************
- *********************** Date : 25/11/2025, Designer: Chandan Shaw  ****************************
+Vcm1 vdd Cn1 dc 0
+Vcm2 Out Dn2 dc 0
 
- .title Simple Current Mirror Using N_Channel MOSFET
+vsup vdd gnd dc 1.8
+*.dc Vout 0 1.8 0.01
+.dc Iin 20u 200u 1u
 
- .lib /home/chandanvlsi/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.control
+run
+set color0=white
+*plot i(Vcm1) i(Vcm2)
+*plot deriv(i(Vcm2))
+***Gate Voltage***
+plot v(Gn)
 
- .global gnd gnd
- .temp 27
+plot i(Vcm1) i(Vcm2)
+plot deriv(v(Gn))
+.end
+.endc
+```
 
- xmn1 Gn Gn gnd gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=4
- xmn2 Dn2 Gn gnd gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=4
- Iin Cn1 Gn dc 100u
- Vout out gnd dc 0.835
+### DC Analysis
 
- Vcm1 vdd Cn1 dc 0
- Vcm2 Out Dn2 dc 0
+```
+*********************** Simple Current Mirror **********************
+******************************* DC ANALYSIS **************************
+*********************** Date : 25/11/2025, Designer: Chandan Shaw  ****************************
 
- vsup vdd gnd dc 1.8
+.title Simple Current Mirror Using N_Channel MOSFET
 
- *.dc Vout 0 1.8 0.01
- .dc Iin 20u 200u 1u
+.lib /home/chandanvlsi/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.global gnd gnd
+.temp 27
 
- .control
- run
- set color0=white
- *plot i(Vcm1) i(Vcm2)
- *plot deriv(i(Vcm2))
- ***Gate Voltage***
- plot v(Gn)
- plot i(Vcm1) i(Vcm2)
- plot deriv(v(Gn))
- .end
- .endc
- ```
+xmn1 Gn Gn gnd gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=4
+xmn2 Dn2 Gn gnd gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=4
+Iin Cn1 Gn dc 100u
+Vout out gnd dc 0.835
+Vcm1 vdd Cn1 dc 0
+Vcm2 Out Dn2 dc 0
+vsup vdd gnd dc 1.8
 
- ### DC Analysis
+.dc Vout 0 1.8 0.01
+*.dc Iin 20u 200u 1u
 
- ```
- *********************** Simple Current Mirror **********************
- ******************************* DC ANALYSIS **************************
- *********************** Date : 25/11/2025, Designer: Chandan Shaw  ****************************
+.control
+run
+set color0=white
+plot i(Vcm1) i(Vcm2)
+plot 1/deriv(i(Vcm2))
+***Gate Voltage***
+plot v(Gn)
+.end
+.endc
+```
 
- .title Simple Current Mirror Using N_Channel MOSFET
+## Cascode Current Mirror
+### DC Analysis
 
- .lib /home/chandanvlsi/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+```
+*********************** NMOS Cascode Current Mirror **********************
+******************************* DC ANALYSIS **************************
+*********************** Date : 25/11/2025, Designer: Chandan Shaw  ****************************
 
- .global gnd gnd
- .temp 27
+.title Cascode Current Mirror Using N_Channel MOSFET
 
- xmn1 Gn Gn gnd gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=4
- xmn2 Dn2 Gn gnd gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=4
- Iin Cn1 Gn dc 100u
- Vout out gnd dc 0.835
+.lib /home/chandanvlsi/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt
 
- Vcm1 vdd Cn1 dc 0
- Vcm2 Out Dn2 dc 0
+.global gnd gnd
+.temp 27
 
- vsup vdd gnd dc 1.8
+xmn1 Gn Gn gnd gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=4
+xmn2 Dn2 Gn gnd gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=4
+xmn3 Dn3 Dn3 Gn gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=4
+xmn4 Dn4 Dn3 Dn2 gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=4
 
- .dc Vout 0 1.8 0.01
- *.dc Iin 20u 200u 1u
+Iin Cn1 Dn3 dc 100u
+Vout Out gnd dc 0.84
 
- .control
- run
- set color0=white
- plot i(Vcm1) i(Vcm2)
- plot 1/deriv(i(Vcm2))
- ***Gate Voltage***
- plot v(Gn)
- .end
- .endc
- ```
+Vcm1 vdd Cn1 dc 0
+Vcm2 Out Dn4 dc 0
 
- ## Cascode Current Mirror
+vsup vdd gnd dc 1.8
 
- ### DC Analysis
+.dc Vout 0 1.8 0.01
+*.dc Iin 20u 200u 1u
 
- ```
- *********************** NMOS Cascode Current Mirror **********************
- ******************************* DC ANALYSIS **************************
- *********************** Date : 25/11/2025, Designer: Chandan Shaw  ****************************
-
- .title Cascode Current Mirror Using N_Channel MOSFET
-
- .lib /home/chandanvlsi/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt
-
- .global gnd gnd
- .temp 27
-
- xmn1 Gn Gn gnd gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=4
- xmn2 Dn2 Gn gnd gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=4
- xmn3 Dn3 Dn3 Gn gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=4
- xmn4 Dn4 Dn3 Dn2 gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=4
-
- Iin Cn1 Dn3 dc 100u
- Vout Out gnd dc 0.84
-
- Vcm1 vdd Cn1 dc 0
- Vcm2 Out Dn4 dc 0
-
- vsup vdd gnd dc 1.8
-
- .dc Vout 0 1.8 0.01
- *.dc Iin 20u 200u 1u
-
- .control
- run
- set color0=white
- plot i(Vcm1) i(Vcm2)
- plot 1/deriv(i(Vcm2))
+.control
+run
+set color0=white
+plot i(Vcm1) i(Vcm2)
+plot 1/deriv(i(Vcm2))
  
- .end
- .endc
+.end
+.endc
+```
+
+### DC Analysis
+
+```
+*********************** NMOS Cascode Current Mirror **********************
+******************************* DC ANALYSIS **************************
+*********************** Date : 25/11/2025, Designer: Chandan Shaw  ****************************
+
+.title Cascode Current Mirror Using N_Channel MOSFET
+.lib /home/chandanvlsi/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.global gnd gnd
+.temp 27
+
+xmn1 Gn Gn gnd gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=4
+xmn2 Dn2 Gn gnd gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=4
+xmn3 Dn3 Dn3 Gn gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=4
+xmn4 Dn4 Dn3 Dn2 gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=4
+
+Iin Cn1 Dn3 dc 100u
+Vout Out gnd dc 0.84
+
+Vcm1 vdd Cn1 dc 0
+Vcm2 Out Dn4 dc 0
+
+vsup vdd gnd dc 1.8
+
+.dc Iin 0 200u 1u
+
+.control
+run
+set color0=white
+plot i(Vcm1) i(Vcm2)
+plot v(Gn) v(Dn3) v(Dn2)
+plot deriv(v(Gn))
+plot deriv(v(Dn3))
+.end
+.endc
+```
+
+## Wide Swing Cascode Current Mirror
+
+### DC Analysis
  ```
+********************************* Wide Swing Cascode Current Mirror Using NMOS *********************************
+************************ DC ANALYSIS ***************************
+************* Date: 11/01/2026 , Designer: Chandan Shaw , Silicon University Bhubaneshwar ********************
 
- ### DC Analysis
+.title Wide Swing Cascode Current Mirror Using N Channel MOSFET
+.lib /home/chandanvlsi/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt
 
- ```
- *********************** NMOS Cascode Current Mirror **********************
- ******************************* DC ANALYSIS **************************
- *********************** Date : 25/11/2025, Designer: Chandan Shaw  ****************************
+.global gnd
+.temp 27
 
- .title Cascode Current Mirror Using N_Channel MOSFET
+xmn1 Dn1 Gn gnd gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=4
+xmn2 Dn2 Gn gnd gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=4
+xmn3 Gn Dn5 Dn1 gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=4
+xmn4 Dn4 Dn5 Dn2 gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=4
+xmn5 Dn5 Dn5 gnd gnd sky130_fd_pr__nfet_01v8 w=5 l=8 m=4
 
- .lib /home/chandanvlsi/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+Iin1 Cn1 Gn dc 100u
+Iin2 Cn2 Dn5 dc 100u
 
- .global gnd gnd
- .temp 27
+Vout Out gnd dc 0.84
 
- xmn1 Gn Gn gnd gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=4
- xmn2 Dn2 Gn gnd gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=4
- xmn3 Dn3 Dn3 Gn gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=4
- xmn4 Dn4 Dn3 Dn2 gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=4
+Vcm1 vdd Cn1 dc 0
+Vcm2 Out Dn4 dc 0
+Vcm3 vdd Cn2 dc 0
 
- Iin Cn1 Dn3 dc 100u
- Vout Out gnd dc 0.84
+Vsup vdd gnd dc 1.8
 
- Vcm1 vdd Cn1 dc 0
- Vcm2 Out Dn4 dc 0
+.dc Vout 0 1.8 0.01
+.control
+run
+set color0=white
+plot i(Vcm1) i(Vcm2) i(Vcm3)
+plot 1/deriv(i(Vcm2))
+plot v(Dn5) v(Dn1) v(Gn) v(Dn2)
+.end
+.endc
+```
 
- vsup vdd gnd dc 1.8
+## Self Baised Wide Swing Cascode Current Mirror
 
- .dc Iin 0 200u 1u
-
- .control
- run
- set color0=white
- plot i(Vcm1) i(Vcm2)
- plot v(Gn) v(Dn3) v(Dn2)
- plot deriv(v(Gn))
- plot deriv(v(Dn3))
- .end
- .endc
- ```
-
- ## Wide Swing Cascode Current Mirror
-
- ### DC Analysis
- ```
- ********************************* Wide Swing Cascode Current Mirror Using NMOS *********************************
- ************************ DC ANALYSIS ***************************
- ************* Date: 11/01/2026 , Designer: Chandan Shaw , Silicon University Bhubaneshwar ********************
-
- .title Wide Swing Cascode Current Mirror Using N Channel MOSFET
-
- .lib /home/chandanvlsi/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt
-
- .global gnd
- .temp 27
-
- xmn1 Dn1 Gn gnd gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=4
- xmn2 Dn2 Gn gnd gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=4
- xmn3 Gn Dn5 Dn1 gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=4
- xmn4 Dn4 Dn5 Dn2 gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=4
- xmn5 Dn5 Dn5 gnd gnd sky130_fd_pr__nfet_01v8 w=5 l=8 m=4
-
- Iin1 Cn1 Gn dc 100u
- Iin2 Cn2 Dn5 dc 100u
-
- Vout Out gnd dc 0.84
-
- Vcm1 vdd Cn1 dc 0
- Vcm2 Out Dn4 dc 0
- Vcm3 vdd Cn2 dc 0
-
- Vsup vdd gnd dc 1.8
-
- .dc Vout 0 1.8 0.01
+### DC Analysis
  
- .control
- run
- set color0=white
- plot i(Vcm1) i(Vcm2) i(Vcm3)
- plot 1/deriv(i(Vcm2))
- plot v(Dn5) v(Dn1) v(Gn) v(Dn2)
- .end
- .endc
- ```
+```
+************************ Self Baised Wide Swing Cascode Current Mirror Using NMOS *********************************
+************************ DC ANALYSIS ***************************
+************* Date: 11/01/2026 , Designer: Chandan Shaw , Silicon University Bhubaneshwar ********************
 
- ## Self Baised Wide Swing Cascode Current Mirror
+.title Self Baised Wide Swing Cascode Current Mirror Using N Channel MOSFET
+.lib /home/chandanvlsi/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.global gnd
+.temp 27
 
- ### DC Analysis
- 
- ```
- ************************ Self Baised Wide Swing Cascode Current Mirror Using NMOS *********************************
- ************************ DC ANALYSIS ***************************
- ************* Date: 11/01/2026 , Designer: Chandan Shaw , Silicon University Bhubaneshwar ********************
+xmn1 Dn1 Gn gnd gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=4
+xmn2 Dn2 Gn gnd gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=4
+xmn3 Gn Rt1 Dn1 gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=4
+xmn4 Dn4 Rt1 Dn2 gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=4
+Ron Rt1 Gn 3k
+Iin Cn1 Rt1 dc 100u
 
- .title Self Baised Wide Swing Cascode Current Mirror Using N Channel MOSFET
+Vout Out gnd dc 0.84
+Vcm1 vdd Cn1 dc 0
+Vcm2 Out Dn4 dc 0
 
- .lib /home/chandanvlsi/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+Vsup vdd gnd dc 1.8
+.dc Vout 0 1.8 0.01
 
- .global gnd
- .temp 27
+.control
+run
+set color0=white
+plot i(Vcm1) i(Vcm2)
+plot 1/deriv(i(Vcm2))
+plot v(Dn1) v(Gn) v(Dn2) v(Rt1)
+.end
+.endc
+```
 
- xmn1 Dn1 Gn gnd gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=4
- xmn2 Dn2 Gn gnd gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=4
- xmn3 Gn Rt1 Dn1 gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=4
- xmn4 Dn4 Rt1 Dn2 gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=4
- Ron Rt1 Gn 3k
- Iin Cn1 Rt1 dc 100u
+## Single Stage Amplifiers
+- A single-stage amplifier is the simplest form of amplifier — it uses just one active device (like a BJT, MOSFET, or JFET) along with biasing and load components to amplify a weak input signal into a stronger output signal.
+- The term single stage means the signal passes through only one amplifying device before reaching the output.
 
- Vout Out gnd dc 0.84
- Vcm1 vdd Cn1 dc 0
- Vcm2 Out Dn4 dc 0
+### Advantages
+- Simple design — easy to understand and build.
+- Low cost — fewer components.
+- Foundation for multi-stage amplifiers.
 
- Vsup vdd gnd dc 1.8
- .dc Vout 0 1.8 0.01
-
- .control
- run
- set color0=white
- plot i(Vcm1) i(Vcm2)
- plot 1/deriv(i(Vcm2))
- plot v(Dn1) v(Gn) v(Dn2) v(Rt1)
- .end
- .endc
- ```
-
- ## Single Stage Amplifiers
- - A single-stage amplifier is the simplest form of amplifier — it uses just one active device (like a BJT, MOSFET, or JFET) along with biasing and load components to amplify a weak input signal into a stronger output signal.
- - The term single stage means the signal passes through only one amplifying device before reaching the output.
-
- ### Advantages
- - Simple design — easy to understand and build.
- - Low cost — fewer components.
- - Foundation for multi-stage amplifiers.
-
- ### Disadvantages
- - Limited gain — can’t amplify very weak signals to large values in one stage.
- - Lower input/output impedance control — may not match all sources/loads.
- - Limited bandwidth — affected by transistor parasitics and load capacitance.
+### Disadvantages
+- Limited gain — can’t amplify very weak signals to large values in one stage.
+- Lower input/output impedance control — may not match all sources/loads.
+- Limited bandwidth — affected by transistor parasitics and load capacitance.
  - Noisy — more susceptible to noise compared to differential stages
  
+## 7.1 Common Source Amplifier using NMOS
+
+### Netlist Code Of Common Source Amplifier using NMOS With Resistive Load
+**DC Analysis**
+```
+************* Common Source Amplifier With N-Channel MOSFET and Resistive Load ****************
+***************************************** DC ANALYSIS *****************************************
+*********************** Date : 30/10/2025, Designer: Chandan Shaw  ****************************
+
+.title Common Source Amplifier With N-Channel MOSFET and Resistive Load
+
+.lib /home/chandanvlsi/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+
+.global gnd
+.temp 27
+
+xmn1 out in gnd gnd sky130_fd_pr__nfet_01v8 w=7 l=2 m=2
+Rd avdd out 8k
+Cl out gnd 10p
+
+vsup avdd gnd dc 1.8
+Vin in gnd dc 0.9 ac 1 sin(0.9 1m 100k)
+
+.ac dec 20 1 1G
+
+.control
+run
+set color0=white
+plot v(out)
+plot v(in) v(out)
+plot db20(v(out)/v(in))
+plot ph(v(out)/v(in))
+.end
+.endc
+```
+### Netlist Code Of Common Source Amplifier Using NMOS and PMOS Current Source Load
+
+**DC Analysis**
+```
+****************** Common Source Amplifier With N-Channel MOSFET and Current Source Load ***************
+************************************ DC Analysis *************************************
+**************** Date: 30/11/2025, Designer: Chandan Shaw, Silicon University Bhubaneswar **************
+
+.title CS Amplifier With NMOS Driver and PMOS Current Source Load
+
+.lib /home/chandanvlsi/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+
+.global gnd vdd
+.temp 27
+
+xmn1 out in gnd gnd sky130_fd_pr__nfet_01v8 w=7 l=2 m=2
+xmn2 Dn2 Gn2 gnd gnd sky130_fd_pr__nfet_01v8 w=7 l=2 m=2
+xmp1 Dp1 Dp2 vdd vdd sky130_fd_pr__pfet_01v8_lvt w=7 l=2 m=6
+xmp2 Dp2 Dp2 vdd vdd sky130_fd_pr__pfet_01v8_lvt w=7 l=2 m=6
+
+Vcm1 Dp1 out dc 0
+Vcm2 Dp2 Dn2 dc 0
+Cl out gnd 10p
+
+vsup vdd gnd dc 1.8
+Vin in gnd dc 0.9 ac 1 sin(0.9 1m 100k)
+Vbn1 Gn2 gnd dc 0.9
+
+.dc Vin 0 1.8 0.01
+
+.control
+run
+set color0=white
+plot v(out) v(Dp2)
+plot i(Vcm1) i(Vcm2)
+print abs(v(Dp2))
+.end
+.endc
+```
+### Netlist Code Of Common Source Amplifier Using NMOS and PMOS Current Source Load
+
+**AC Analysis**
+```
+****************** Common Source Amplifier With N-Channel MOSFET and PMOS Current Source Load ***************
+************************************ AC Analysis *************************************
+**************** Date: 30/11/2025, Designer: Chandan Shaw, Silicon University Bhubaneswar **************
+
+.title CS Amplifier With NMOS Driver and PMOS Current Source Load
+
+.lib /home/chandanvlsi/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+
+.global gnd vdd
+.temp 27
+
+xmn1 out in gnd gnd sky130_fd_pr__nfet_01v8 w=7 l=2 m=2
+xmn2 Dn2 Gn2 gnd gnd sky130_fd_pr__nfet_01v8 w=7 l=2 m=2
+xmp1 Dp1 Dp2 vdd vdd sky130_fd_pr__pfet_01v8_lvt w=7 l=2 m=6
+xmp2 Dp2 Dp2 vdd vdd sky130_fd_pr__pfet_01v8_lvt w=7 l=2 m=6
+
+Vcm1 Dp1 out dc 0
+Vcm2 Dp2 Dn2 dc 0
+Cl out gnd 10p
+
+vsup vdd gnd dc 1.8
+Vin in gnd dc 0.9 ac 1 sin(0.9 1m 100k)
+Vbn1 Gn2 gnd dc 0.9
+
+.ac dec 20 1 1G
+
+.control
+run
+set color0=white
+plot v(in) abs(v(out)) xlabel 'Frequency' ylabel 'Gain(mag)'
+plot abs(v(out))/v(in) xlabel 'Frequency' ylabel 'Gain(mag)'
+plot vdb(out)          xlabel 'Frequency' ylabel 'Gain(mag)'
+plot ph(out)*(180/pi)  xlabel 'Frequency' ylabel 'Gain(mag)'
+
+print vdb(out)
+.end
+.endc
+```
+
+### Netlist Code Of Common Source Amplifier Using NMOS and PMOS Current Source Load
+
+**Transient Analysis**
+
+```
+****************** Common Source Amplifier With N-Channel MOSFET and Current Source Load ***************
+************************************ TRANSIENT Analysis *************************************
+**************** Date: 30/11/2025, Designer: Chandan Shaw, Silicon University Bhubaneswar **************
+
+.title CS Amplifier With NMOS Driver and PMOS Current Source Load
+
+.lib /home/chandanvlsi/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+
+.global gnd vdd
+.temp 27
+
+xmn1 out in gnd gnd sky130_fd_pr__nfet_01v8 w=7 l=2 m=2
+xmn2 Dn2 Gn2 gnd gnd sky130_fd_pr__nfet_01v8 w=7 l=2 m=2
+xmp1 Dp1 Dp2 vdd vdd sky130_fd_pr__pfet_01v8_lvt w=7 l=2 m=6
+xmp2 Dp2 Dp2 vdd vdd sky130_fd_pr__pfet_01v8_lvt w=7 l=2 m=6
+
+Vcm1 Dp1 out dc 0
+Vcm2 Dp2 Dn2 dc 0
+Cl out gnd 10p
+
+vsup vdd gnd dc 1.8
+Vin in gnd dc 0.9 ac 1 sin(0.9 1m 10k)
+Vbn1 Gn2 gnd dc 0.9
+
+.tran 1n 1000u
+
+.control
+run
+set color0=white
+plot v(in)
+plot v(out)
+.end
+.endc
+```
+
+### Netlist Code Of Common Gate Amplifier using NMOS With Resistive Load
+**DC Analysis**
+```
+********************** Common GATE Amplifier with MOSFET load ************
+******************************* DC ANALYSIS ********************************
+****************************** Date : 28/10/2025,  Designer:  Chandan Shaw *******************
+
+.title Common Gate Amplifier With MOSFET Load
+
+.lib /home/chandanvlsi/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+
+.global gnd
+.temp 27
+
+xm1 out Gn1 Sn1 gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=4
+Rd Rt1 out 8k
+Cl out gnd 10p
+Vcm vdd Rt1 dc 0
+
+
+Vsup vdd gnd dc 1.8
+Vgs Gn1 gnd dc 1.2
+Vss Sn1 gnd dc 0.2 ac 1 sin(0.2 10m 1k)
+
+.dc Vgs 0 1.8 0.01
+*.ac dec 10 1 1G
+*.tran 20u 1n
+
+.control
+run
+set color0=white
+plot i(Vcm)
+plot v(Sn1) v(out)
+plot deriv(out)
+*plot db(out)
+*plot ph((out)*180/pi)
+.end
+.endc
+```
+
+### Netlist Code Of Common Gate Amplifier using NMOS With Resistive Load
+**AC Analysis**
+```
+********************** Common GATE Amplifier with MOSFET load ************
+******************************* AC ANALYSIS ********************************
+****************************** Date : 28/10/2025,  Designer:  Chandan Shaw *******************
+
+.title Common Gate Amplifier With MOSFET Load
+
+.lib /home/chandanvlsi/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+
+.global gnd
+.temp 27
+
+xm1 out Gn1 Sn1 gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=4
+Rd Rt1 out 8k
+Cl out gnd 10p
+Vcm vdd Rt1 dc 0
+
+
+Vsup vdd gnd dc 1.8
+Vgs Gn1 gnd dc 1.08104
+Vss Sn1 gnd dc 0.2 ac 1 sin(0.2 10m 1k)
+
+*.dc Vgs 0 1.8 0.01
+.ac dec 10 1 1G
+*.tran 20u 1n
+
+.control
+run
+set color0=white
+plot i(Vss) i(Vcm)
+plot v(Sn1) v(Gn1) v(out)
+plot db(out) db(Sn1)
+plot ph(out)*(180/pi)
+.end
+.endc
+```
+### Netlist Code Of Common Gate Amplifier using NMOS With Resistive Load
+**Transient Analysis**
+```
+********************** Common GATE Amplifier with MOSFET load ************
+******************************* Transient ANALYSIS ********************************
+****************************** Date : 28/10/2025,  Designer:  Chandan Shaw *******************
+
+.title Common Gate Amplifier With MOSFET Load
+.lib /home/chandanvlsi/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+
+.global gnd
+.temp 27
+
+xm1 out Gn1 Sn1 gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=4
+Rd Rt1 out 8k
+Cl out gnd 10p
+Vcm vdd Rt1 dc 0
+
+Vsup vdd gnd dc 1.8
+Vgs Gn1 gnd dc 1.0813
+Vss Sn1 gnd dc 0.2 ac 1 sin(0.2 10m 1k)
+
+.tran 1n 10m
+
+.control
+run
+set color0=white
+plot v(Sn1)
+plot v(out)
+.end
+.endc
+```
