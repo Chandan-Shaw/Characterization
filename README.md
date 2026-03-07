@@ -595,7 +595,8 @@ plot  v(in) v(out)
 .end
 ```
 #### Simulation Of DC Analysis
-![Diagram](
+![Diagram](https://github.com/Chandan-Shaw/Characterization/blob/main/CMOS_Inverter_DC_Simulation.png)
+
 ### Netlist Code CMOS Inverter In AC Analysis
 
 ```
@@ -622,12 +623,13 @@ plot vdb(out)
 .end
 ```
 #### Simulation Of AC Analysis
-![Diagram](
+![Diagram](https://github.com/Chandan-Shaw/Characterization/blob/main/CMOS_Inverter_AC_Simulation.png)
 ### Netlist Code CMOS Inverter In Transient Analysis
 
 ```
-****************************** CMOS Inverter Transien Analysis **************************************
-******** Date: 20/12/2025 , Designer: Chandan Shaw , Silicon University, Bhubaneswar **********
+****************************** CMOS Inverter Transient Analysis *************************************
+******** Date: 20/12/2025 , Designer: Chandan Shaw , Silicon University, Bhubaneswar ****************
+.title CMOS Inverter Transient Analysis
 .lib /home/chandanvlsi/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt
 .temp 25
 
@@ -650,6 +652,118 @@ plot v(in) v(out)
 .end
 ```
 #### Simulation Of Transient Analysis
+![Diagram](https://github.com/Chandan-Shaw/Characterization/blob/main/CMOS_Inverter_Transient_Simulation.png)
+
+### 5.2 Static Power
+#### Netlist Code Of CMOS Inverter Static Power
+```
+****************************** CMOS Inverter Static Power *******************************************
+******** Date: 20/12/2025 , Designer: Chandan Shaw , Silicon University, Bhubaneswar ****************
+.title CMOS Inverter Static Power
+.lib /home/chandanvlsi/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.temp 25
+.global VDD  GND
+
+**PMOS**
+VDD      VDD     GND     DC      1.8
+VIN      in      GND     DC      0
+XP1      out     in      VDD     VDD    sky130_fd_pr__pfet_01v8_lvt L=0.35  W=7
+XM1      out     in      GND     GND    sky130_fd_pr__nfet_01v8_lvt L=0.15  W=7
+C1      out     0       1a
+
+*NMOS*
+Vns     n1      0       DC      1.8
+V1      i1      0       DC      1.8
+XP2     o1     i1       n1       n1    sky130_fd_pr__pfet_01v8_lvt L=0.35  W=7
+XM2     o1     i1       0        0    sky130_fd_pr__nfet_01v8_lvt L=0.15  W=7
+C2      o1      0       1a
+
+.OP
+.control
+run
+print abs(I(VDD))
+print abs(I(Vns))
+let static_power=((I(VDD)) + (I(Vns)))*1.8
+print abs(static_power)
+.end
+.endc
+```
+#### Simulation Of CMOS Inverter Static Power
+![Diagram](
+### 5.2 Dynamic Power
+#### Netlist Code Of CMOS Inverter Dynamic Power
+```
+****************************** CMOS Inverter Dynamic Power *******************************************
+******** Date: 20/12/2025 , Designer: Chandan Shaw , Silicon University, Bhubaneswar ****************
+
+.title CMOS Inverter Dynamic Power
+.lib /home/chandanvlsi/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice ss
+.temp 125
+Vdd Vdd 0 1.8
+Vin In 0 PULSE(0 1.8 0 10n 10n 60n 120n)
+XM1 Out In Vdd Vdd sky130_fd_pr__pfet_01v8_lvt w=7 l=.35
+XM2 Out In 0   0   sky130_fd_pr__nfet_01v8_lvt w=7 l=.15
+C1 out 0 1a
+.tran 0.1n 240n
+.op
+.control
+run
+plot V(in)  V(Out)
+plot abs(i(Vdd))
+meas tran i(avg) AVG  i(Vdd)
+meas tran rise_time TRIG v(out) VAL=0.18 RISE=1 TARG v(out) VAL=1.62 RISE=1
+meas tran fall_time TRIG v(out) VAL=1.62 FALL=1 TARG v(out) VAL=0.18 FALL=1
+meas tran delay_time TRIG v(in) VAL=0.9 RISE=1 TARG v(out) VAL=0.9 RISE=1
+meas tran vmax MAX v(out)
+meas tran vmin MIN v(out)
+let  power = i(avg)*1.8
+print power
+.endc
+.end
+```
+#### Simulation Of CMOS Inverter Dynamic Power
+![Diagram](
+![Diagram](
+### 5.3 CMOS Inverter Fanout
+#### Netlist Code Of CMOS Inverter Fanout
+```
+****************************** CMOS Inverter Fanout *******************************************
+******** Date: 20/12/2025 , Designer: Chandan Shaw , Silicon University,Bhubaneswar ***********
+
+.title CMOS Inverter Fanout
+.lib /home/chandanvlsi/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice ss
+.temp 125
+
+Vdd Vdd 0 1.8
+Vin In 0 PULSE(0 1.8 0 10n 10n 60n 120n)
+XM1 Out In Vdd Vdd sky130_fd_pr__pfet_01v8_lvt w=7 l=.35 m=1
+XM2 Out In 0   0   sky130_fd_pr__nfet_01v8_lvt w=7 l=.15 m=1
+
+XM11 Out1 Out Vdd Vdd sky130_fd_pr__pfet_01v8_lvt w=7 l=.35 m=1
+XM21 Out1 Out 0   0   sky130_fd_pr__nfet_01v8_lvt w=7 l=.15 m=1
+
+XM12 Out2 Out Vdd Vdd sky130_fd_pr__pfet_01v8_lvt w=7 l=.35 m=1
+XM22 Out2 Out 0   0   sky130_fd_pr__nfet_01v8_lvt w=7 l=.15 m=1
+
+XM13 Out3 Out Vdd Vdd sky130_fd_pr__pfet_01v8_lvt w=7 l=.35 m=1
+XM23 Out3 Out 0   0   sky130_fd_pr__nfet_01v8_lvt w=7 l=.15 m=1
+
+XM14 Out4 Out Vdd Vdd sky130_fd_pr__pfet_01v8_lvt w=7 l=.35 m=1
+XM24 Out4 Out 0   0   sky130_fd_pr__nfet_01v8_lvt w=7 l=.15 m=1
+
+.tran 0.1n 240n
+.op
+.control
+run
+meas tran rise_time TRIG v(out) VAL=0.18 RISE=1 TARG v(out) VAL=1.62 RISE=1
+meas tran fall_time TRIG v(out) VAL=1.62 FALL=1 TARG v(out) VAL=0.18 FALL=1
+meas tran delay_time TRIG v(in) VAL=0.9 RISE=1 TARG v(out) VAL=0.9 RISE=1
+meas tran vmax MAX v(out)
+meas tran vmin MIN v(out)
+.endc
+.end
+```
+#### Simulation Of CMOS Inverter Fanout
 ![Diagram](
 ## Simple Current Mirror
 
