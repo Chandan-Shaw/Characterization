@@ -551,21 +551,19 @@ plot I(VD) xlabel "VDS (V)" ylabel "ID (A)" title "PMOS ID vs VDS"
 ```
 ![Diagram](https://github.com/Chandan-Shaw/Characterization/blob/main/PMOS_Id_Vds%20Curve.png)
 
-## 1. CMOS
-  
-### What Is CMOS ?
-CMOS (Complementary Metal–Oxide–Semiconductor) is a technology used to build most modern digital chips — like
-processors, memory, and logic circuits.
+## 5. INVERTER
 
-CMOS is a semiconductor technology that uses complementary NMOS and PMOS transistors to build low-power, high-speed
-digital and analog circuits.
-  
-It Uses two types OF MOSFET Operation:
-- **PMOS(Positive Type)**
-- **NMOS(Negative Type)**
-    
-They work together in a CMOS: - When one is **ON** then Other is **OFF.**
+### 5.1 CMOS Inverter
 
+A **CMOS inverter** using the open-source **SkyWater SKY130 PDK**, with `sky130_fd_pr__pfet_01v8_lvt` (pMOS) and `sky130_fd_pr__nfet_01v8_lvt` (nMOS) transistors. The inverter is designed and simulated in **Xschem + Ngspice**, showing correct switching behavior from 0 V to 1.8 V. Key performance aspects such as transfer characteristics, switching threshold, and rise/fall times are verified.
+
+### Key Points  
+- **Technology:** SKY130 (1.8 V low-Vt devices)  
+- **Transistors Used:** `pfet_01v8_lvt` (PMOS), `nfet_01v8_lvt` (NMOS)  
+- **Simulation Tools:** Xschem (schematic) + Ngspice (simulation)  
+- **Input:** Pulse source (0 → 1.8 V)  
+- **Output:** Clean digital inversion with sharp transition near VDD/2
+  
 ### Why CMOS is important ?
 - Very Low Power Consumption
 - High Speed
@@ -574,7 +572,85 @@ They work together in a CMOS: - When one is **ON** then Other is **OFF.**
 
 It is used in like ***Microprocessors***,***Smartphone***,***Digital Logic Circuits***,***Memory Chips.***
 
+### Netlist Code CMOS Inverter In DC Analysis
 
+```
+****************************** CMOS Inverter DC Analysis **************************************
+******** Date: 20/12/2025 , Designer: Chandan Shaw , Silicon University, Bhubaneswar **********
+.lib /home/chandanvlsi/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.temp 25
+
+VDD ps 0 DC 1.8
+VIN in 0 DC 0
+XM1 out in 0 0 sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+XM2 out in ps ps sky130_fd_pr__pfet_01v8 W=1.26 L=0.15
+
+** Simulation Command
+.dc VIN 0 1.8 0.01
+
+.control
+run
+plot  v(in) v(out)
+.endc
+.end
+```
+#### Simulation Of DC Analysis
+![Diagram](
+### Netlist Code CMOS Inverter In AC Analysis
+
+```
+****************************** CMOS Inverter AC Analysis **************************************
+******** Date: 20/12/2025 , Designer: Chandan Shaw , Silicon University, Bhubaneswar **********
+.lib /home/chandanvlsi/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.temp 25
+
+Vdd Vdd 0 1.8
+Vin In  0 1.8 ac  1
+XM1 Out In Vdd Vdd sky130_fd_pr__pfet_01v8_lvt w=7 l=.35
+XM2 Out In 0   0   sky130_fd_pr__nfet_01v8_lvt w=7 l=.15
+C1 out 0 100f
+
+** Simulation Command Of AC Analysis
+.ac dec 10 1meg 10e13
+
+** Control Command
+.control
+run
+plot vdb(out)
+
+.endc
+.end
+```
+#### Simulation Of AC Analysis
+![Diagram](
+### Netlist Code CMOS Inverter In Transient Analysis
+
+```
+****************************** CMOS Inverter Transien Analysis **************************************
+******** Date: 20/12/2025 , Designer: Chandan Shaw , Silicon University, Bhubaneswar **********
+.lib /home/chandanvlsi/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.temp 25
+
+* Supply voltage
+VDD vdd 0 DC 1.2
+VIN in 0 PULSE(0 1.2 2n 0 0 100n 200n)
+XM1 out in 0 0 sky130_fd_pr__nfet_01v8 W=1.26 L=0.15
+XM2 out in vdd vdd sky130_fd_pr__pfet_01v8 W=1.26 L=0.15
+Cload out 0 100f
+
+** Simulation Command Of Transient Analysis
+.tran 0.1n 500n
+
+** Control Command
+.control
+run
+plot v(in) v(out)
+
+.endc
+.end
+```
+#### Simulation Of Transient Analysis
+![Diagram](
 ## Simple Current Mirror
 
 - A current mirror is an analog circuit that copies (or "mirrors") a reference current from one branch of a circuit into another branch, maintaining a constant output current regardless of the load resistance (within limits).
