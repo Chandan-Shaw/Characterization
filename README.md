@@ -689,7 +689,7 @@ print abs(static_power)
 .endc
 ```
 #### Simulation Of CMOS Inverter Static Power
-![Diagram](
+![Diagram](https://github.com/Chandan-Shaw/Characterization/blob/main/CMOS_Static_Power_Value.png)
 ### 5.2 Dynamic Power
 #### Netlist Code Of CMOS Inverter Dynamic Power
 ```
@@ -722,8 +722,10 @@ print power
 .end
 ```
 #### Simulation Of CMOS Inverter Dynamic Power
-![Diagram](
-![Diagram](
+![Diagram](https://github.com/Chandan-Shaw/Characterization/blob/main/CMOS_Inverter_Dynamic_Power_Value.png)
+![Diagram](https://github.com/Chandan-Shaw/Characterization/blob/main/CMOS_Inverter_Dynamic_Power_Simulation.png)
+![Diagram](https://github.com/Chandan-Shaw/Characterization/blob/main/CMOS_Inverter_Dynamic_Power_Simulations.png)
+
 ### 5.3 CMOS Inverter Fanout
 #### Netlist Code Of CMOS Inverter Fanout
 ```
@@ -764,7 +766,7 @@ meas tran vmin MIN v(out)
 .end
 ```
 #### Simulation Of CMOS Inverter Fanout
-![Diagram](
+![Diagram](https://github.com/Chandan-Shaw/Characterization/blob/main/CMOS_Inverter_Fanout.png)
 ## Simple Current Mirror
 
 - A current mirror is an analog circuit that copies (or "mirrors") a reference current from one branch of a circuit into another branch, maintaining a constant output current regardless of the load resistance (within limits).
