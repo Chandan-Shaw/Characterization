@@ -1120,7 +1120,7 @@ plot v(Dn1) v(Gn) v(Dn2) v(Rt1)
 .endc
 ```
 
-## Single Stage Amplifiers
+## 7. Single Stage Amplifiers
 - A single-stage amplifier is the simplest form of amplifier — it uses just one active device (like a BJT, MOSFET, or JFET) along with biasing and load components to amplify a weak input signal into a stronger output signal.
 - The term single stage means the signal passes through only one amplifying device before reaching the output.
 
@@ -1292,6 +1292,8 @@ plot v(out)
 .endc
 ```
 
+## 7.2 Common Gate Amplifier using NMOS
+
 ### Netlist Code Of Common Gate Amplifier using NMOS With Resistive Load
 **DC Analysis**
 ```
@@ -1351,14 +1353,11 @@ Rd Rt1 out 8k
 Cl out gnd 10p
 Vcm vdd Rt1 dc 0
 
-
 Vsup vdd gnd dc 1.8
 Vgs Gn1 gnd dc 1.08104
 Vss Sn1 gnd dc 0.2 ac 1 sin(0.2 10m 1k)
 
-*.dc Vgs 0 1.8 0.01
 .ac dec 10 1 1G
-*.tran 20u 1n
 
 .control
 run
@@ -1401,4 +1400,584 @@ plot v(Sn1)
 plot v(out)
 .end
 .endc
+```
+
+## 7.3 Common Drain Amplifier using NMOS
+
+### Netlist Code Of Common Drain Amplifier using NMOS With MOSFET Load
+**DC Analysis**
+
+```
+********************** Common Drain Amplifier with MOSFET load ************
+******************************* DC ANALYSIS ********************************
+****************************** Date : 28/10/2025,  Designer:  Chandan Shaw *******************
+
+.title Common Drain Amplifier With MOSFET Load
+
+.lib /home/chandanvlsi/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+
+.global gnd gnd
+.temp 27
+
+xm1 Dn1 in out gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=4
+xm2 out Gn2 gnd gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=4
+*Rl Out Gnd 9
+Vcm vdd Dn1 dc 0
+Cl out gnd 10p
+
+Vsup vdd gnd dc 1.8
+Vbias Gn2 gnd dc 0.85
+Vin in gnd dc 1.5 ac 1 sin(1.438 1m 100k)
+
+*.dc Vbn1 0 1.8 0.01
+.dc Vin 0 1.8 0.01
+
+.control
+run
+set color0=white
+plot v(out)
+plot i(Vcm)
+plot deriv(v(out))
+.end
+.endc
+```
+
+### Netlist Code Of Common Drain Amplifier using NMOS With MOSFET Load
+**AC Analysis**
+```
+********************** Common Drain Amplifier with MOSFET load *************
+******************************* AC ANALYSIS ********************************
+***************** Date : 28/10/2025,  Designer:  Chandan Shaw **************
+
+.title Common Drain Amplifier With MOSFET Load
+
+.lib /home/chandanvlsi/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+
+.global gnd gnd
+.temp 27
+
+xm1 Dn1 in out gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=4
+xm2 out Gn2 gnd gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=4
+Vcm vdd Dn1 dc 0
+Cl out gnd 10p
+
+Vsup vdd gnd dc 1.8
+Vbias Gn2 gnd dc 0.85
+Vin in gnd dc 1.14 ac 1 sin(1.438 1m 100k)
+
+.ac dec 10 1 1G
+
+.control
+run
+set color0=white
+plot v(out)
+plot i(Vcm)
+plot ph((out)*180/pi)
+*plot deriv(v(out))
+.end
+.endc
+```
+
+### Netlist Code Of Common Drain Amplifier using NMOS With MOSFET Load
+**Transient Analysis**
+```
+********************** Common Drain Amplifier with MOSFET load ************
+******************************* DC ANALYSIS ********************************
+****************************** Date : 28/10/2025,  Designer:  Chandan Shaw *******************
+
+.title Common Drain Amplifier With MOSFET Load
+
+.lib /home/chandanvlsi/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+
+.global gnd gnd
+.temp 27
+
+xm1 Dn1 in out gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=4
+xm2 out Gn2 gnd gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=4
+Vcm vdd Dn1 dc 0
+Cl out gnd 10p
+
+Vsup vdd gnd dc 1.8
+Vbias Gn2 gnd dc 0.85
+Vin in gnd dc 1.5 ac 1 sin(1.438 1m 100k)
+
+.tran 1n 10m
+
+.control
+run
+set color0=white
+plot v(out)
+plot i(Vcm)
+plot deriv(v(out))
+.end
+.endc
+```
+
+### Netlist Code Of Common Drain Amplifier using NMOS With Resistive Load
+**DC Analysis**
+```
+******************** Common Drain Amplifier with resistive load ************
+******************************* DC ANALYSIS ********************************
+*************** Date : 28/10/2025,  Designer:  Chandan Shaw ****************
+
+.title Common Drain Amplifier With Resistive Load
+
+.lib /home/chandanvlsi/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+
+.global gnd gnd
+.temp 27
+
+xm1 Dn1 in out gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=4
+Rs out gnd 5k
+*Rl Out Gnd 9
+Vcm vdd Dn1 dc 0
+Cl out gnd 10p
+
+vsup vdd gnd dc 1.8
+Vin in gnd dc 1.5 ac 1 sin(1.438 1m 100k)
+
+*.dc Vbn1 0 1.8 0.01
+.dc Vin 0 1.8 0.01
+
+.control
+run
+set color0=white
+plot v(out)
+plot i(Vcm)
+plot deriv(v(out))
+.end
+.endc
+```
+
+### Netlist Code Of Common Drain Amplifier using NMOS With Resistive Load
+**AC Analysis**
+
+```
+********************* Common Drain Amplifier with resistive load ************
+****************************** AC ANALYSIS ********************************
+***************** Date : 28/10/2025,  Designer:  Chandan Shaw ****************
+
+.title Common Drain Amplifier With Resistive Load
+
+.lib /home/chandanvlsi/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+
+.global gnd gnd
+.temp 27
+
+xm1 Dn1 in out gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=4
+Rs out gnd 5k
+*Rl Out Gnd 9
+Vcm vdd Dn1 dc 0
+Cl out gnd 10p
+
+vsup vdd gnd dc 1.8
+Vin in gnd dc 1.5 ac 1 sin(1.438 1m 100k)
+
+.ac dec 10 1 10G
+
+.control
+run
+set color0=white
+plot v(out)
+plot ph(out)*(180/pi)
+.end
+.endc
+```
+
+### Netlist Code Of Common Drain Amplifier using NMOS With Resistive Load
+**Transient Analysis**
+```
+********************** Common Drain Amplifier with resistive load ************
+******************************* TRAN ANALYSIS ********************************
+****************************** Date : 28/10/2025,  Designer:  Chandan Shaw *******************
+
+.title Common Drain Amplifier With Resistive Load
+
+.lib /home/chandanvlsi/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+
+.global gnd gnd
+.temp 27
+
+xm1 Dn1 in out gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=4
+Rs out gnd 5k
+*Rl Out Gnd 9
+Vcm vdd Dn1 dc 0
+Cl out gnd 10p
+
+vsup vdd gnd dc 1.8
+Vin in gnd dc 1.5 ac 1 sin(1.438 300m 100k)
+
+.tran 10p 100u
+
+.control
+run
+set color0=white
+plot v(in) v(out)
+
+.end
+.endc
+```
+
+## 8. Cascode Amplifier
+
+## 8.1 Cascode Amplifier using NMOS
+
+### Netlist Code Of Cascode Amplifier using NMOS With MOSFET Load
+**DC Analysis**
+```
+********************** Cascode Amplifier With MOS Load *******************
+******************************* DC ANALYSIS ******************************
+**************** Date : 30/10/2025, Designer: Chandan Shaw  **************
+
+.title Cascode Amplifier Wirh NMOS Driver and Resistive Load
+
+.lib /home/chandanvlsi/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+
+.global gnd vdd
+.temp 27
+
+xmn1 Dn1 in gnd gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=4
+xmn2 Out Gn2 Dn1 gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=4
+xmp1 Out Gp1 Ds1 vdd sky130_fd_pr__pfet_01v8_lvt w=5 l=2 m=4
+Rd Rt1 Out 8k
+Vcm vdd Rt1 dc 0
+Cl out gnd 10p
+
+vsup vdd gnd dc 1.8
+vb2 Gn2 gnd dc 1.3283
+Vin in gnd dc 0.84 ac 1 sin(0.9 1m 100k)
+
+.dc Vin 0 1.8 0.01
+
+.control
+run
+set color0=white
+plot v(out) v(Dn1)
+plot v(Out)
+plot v(Dn1)
+plot i(Vcm)
+plot deriv(v(out))
+.end
+.endc
+```
+### Netlist Code Of Cascode Amplifier using NMOS With MOSFET Load
+**AC Analysis**
+
+```
+****************** Cascode Amplifier With Resistive Load *******************
+******************************* AC ANALYSIS ********************************
+****************** DAte : 30/10/2025, Designer: Chandan Shaw  **************
+
+.title Cascode Amplifier Wirh NMOS Driver and Resistive Load
+
+.lib /home/chandanvlsi/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+
+.global gnd vdd
+.temp 27
+
+xmn1 Dn1 in gnd gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=4
+xmn2 Out Gn2 Dn1 gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=4
+xmn2 Out Gp1 Ds1 vdd sky130_fd_pr__nfet_01v8_lvt w=5 l=2 m=14
+Vcm vdd Rt1 dc 0
+Cl out gnd 10p
+
+vsup vdd gnd dc 1.8
+Vbn2 Gn2 gnd dc 1.3283
+Vbp1 Gp1 gnd dc 0.998
+Vin in gnd dc 0.84 ac 1 sin(0.9 1m 100k)
+
+.ac dec 10 1 1G
+
+.control
+run
+set color0=white
+plot db(Out)
+plot ph(out)*(180/pi)
+plot v(Out)*-1
+plot v(Dn1)*-1
+.end
+.endc
+```
+
+### Netlist Code Of Cascode Amplifier using NMOS With MOSFET Load
+**Transient Analysis**
+
+```
+****************** Cascode Amplifier With Resistive Load *******************
+******************************* TRANSIENT ANALYSIS *************************
+****************** Date : 30/10/2025, Designer: Chandan Shaw  **************
+
+.title Cascode Amplifier With NMOS Driver and Resistive Load
+
+.lib /home/chandanvlsi/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+
+.global gnd vdd
+.temp 27
+
+xmn1 Dn1 in gnd gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=4
+xmn2 Out Gn2 Dn1 gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=4
+xmp1 Out Gp1 Ds1 vdd sky130_fd_pr__nfet_01v8_lvt w=5 l=2 m=14
+Vcm vdd Ds1 dc 0
+Cl out gnd 10p
+
+vsup vdd gnd dc 1.8
+vb2 Gn2 gnd dc 1.3283
+vbp1 Gp1 gnd dc 0.998
+Vin in gnd dc 0.84 ac 1 sin(0.84 1m 1k)
+
+.tran 1u 10m
+
+.control
+run
+set color0=white
+plot v(in)
+plot v(Out)
+.end
+.endc
+```
+
+## 9. Differential Amplifier
+
+- A differential amplifier is a type of electronic amplifier that amplifies the difference between two input signals while rejecting any voltage common to both inputs (called common-mode signals).
+- It’s one of the most fundamental building blocks in analog and mixed-signal circuits.
+
+### Advantages
+- High CMRR
+- Better stability
+
+### Disadvantages
+- Requires matched components for ideal operation.
+- More complex biasing compared to single-ended amplifiers.
+
+### 9.1 Differential Amplifier using NMOS
+
+### Netlist Code Of Differential Amplifier 
+**DC Analysis**
+```
+****************** Differntial Amplifier Using NMOS ************************
+******************************* DC ANALYSIS ********************************
+****************** Date : 26/11/2025, Designer: Chandan Shaw  **************
+
+.title DC Analysis Of Differntial Amplifier Using NMOS
+.lib /home/chandanvlsi/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.temp 25
+
+XM1 g1  g1 d  d sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+XM2 n1  g1 d  d sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+XM3 g1  n3  n2  0 sky130_fd_pr__nfet_01v8_lvt  L=0.5 W=7
+XM4 n1  n3  n7  0 sky130_fd_pr__nfet_01v8_lvt  L=0.5 W=7
+XM5 n4  n4  0  0 sky130_fd_pr__nfet_01v8_lvt  L=4 W=5 m=10
+XM6 n8  n4  0  0 sky130_fd_pr__nfet_01v8_lvt  L=4 W=5 m=10
+
+Vn  n3 0 1.25
+Iref 0 n4  50u
+C1 n1 0 500f
+Vdd d 0 1.8
+V1 n2 n6 0
+V2 n7 n6 0
+`V3 n6 n8 0
+
+.op
+.control
+run
+*dc Vn 0 1.8 0.01
+*plot v(n1)
+print v(n2)
+print v(g1)
+print v(n1)
+print i(vdd)
+print i(V1)
+print i(V2)
+print i(v3)
+.endc
+.end
+```
+
+### Netlist Code Of Differential Amplifier 
+**AC Analysis**
+
+```
+****************** Differntial Amplifier Using NMOS ************************
+******************************* AC ANALYSIS ********************************
+****************** Date : 26/11/2025, Designer: Chandan Shaw  **************
+
+.title AC Analysis Of Differntial Amplifier Using NMOS
+.lib /home/chandanvlsi/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.temp 25
+
+XM1 g1  g1 d  d sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+XM2 n1  g1 d  d sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+XM3 g1  n3  n2  0 sky130_fd_pr__nfet_01v8_lvt  L=.5 W=7
+XM4 n1  n5  n7  0 sky130_fd_pr__nfet_01v8_lvt  L=.5 W=7
+XM5 n4  n4  0  0 sky130_fd_pr__nfet_01v8_lvt  L=4 W=5 m=10
+XM6 n8  n4  0  0 sky130_fd_pr__nfet_01v8_lvt  L=4 W=5 m=10
+
+Vdd d 0 1.8
+Vn  n3 0 1.25 ac 0.5
+Vp  n5 0 1.25 ac -0.5
+Iref 0 n4  50u
+C1 n1 0 500f
+V1 n2 n6 0
+V2 n7 n6 0
+V3 n6 n8 0
+
+.ac dec 10 1 15meg
+.control
+run
+plot (180/3.141)*ph(n1)
+plot vdb(n1)
+.endc
+.end
+```
+
+### Netlist Code Of Differential Amplifier 
+**TRANSIENT Analysis**
+
+```
+****************** Differntial Amplifier Using NMOS ************************
+**************************** TRANSIENT ANALYSIS ****************************
+****************** Date : 26/11/2025, Designer: Chandan Shaw  **************
+
+.title Transient Analysis Of Differntial Amplifier Using NMOS
+.lib /home/chandanvlsi/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.temp 25
+
+XM1 g1  g1 d  d sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+XM2 n1  g1 d  d sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+XM3 g1  n3  n2  0 sky130_fd_pr__nfet_01v8_lvt  L=.5 W=7
+XM4 n1  n5  n7  0 sky130_fd_pr__nfet_01v8_lvt  L=.5 W=7
+XM5 n4  n4  0  0 sky130_fd_pr__nfet_01v8_lvt  L=4 W=5 m=10
+XM6 n8  n4  0  0 sky130_fd_pr__nfet_01v8_lvt  L=4 W=5 m=10
+
+Vdd d 0 1.8
+Vn  n3 0 sin(1.25 5m 10k)
+Vp  n5 0 sin(1.25 5m 10k 0 0 180)
+Iref 0 n4  50u
+C1 n1 0 500f
+V1 n2 n6 0
+V2 n7 n6 0
+V3 n6 n8 0
+
+.tran 0.1u 100u
+.control
+run
+plot v(n3) v(n5)
+plot v(n1)
+.endc
+.end
+```
+
+### 9.2 Differential Amplifier using PMOS
+
+### Netlist Code Of Differential Amplifier 
+**DC Analysis**
+
+```
+****************** Differntial Amplifier Using PMOS ************************
+******************************* DC ANALYSIS ********************************
+****************** Date : 26/11/2025, Designer: Chandan Shaw  **************
+
+.title DC Analysis Of Differntial Amplifier Using PMOS
+.lib /home/chandanvlsi/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.temp 25
+
+XM1 g1  g1 d  d sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+XM2 n1  g1 d  d sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+XM3 g2  i1  n2  n2  sky130_fd_pr__pfet_01v8_lvt  L=0.5 W=7 m=5
+XM4 n3  i1  n2  n2  sky130_fd_pr__pfet_01v8_lvt  L=0.5 W=7 m=5
+XM5 g2  g2  n4  0   sky130_fd_pr__nfet_01v8  L=4 W=2 m=5
+XM6 n3  g2  n5  0   sky130_fd_pr__nfet_01v8  L=4 W=2 m=5
+
+Vdd d 0 1.8
+V1 n1 n2 0
+Iref g1 0 50u
+V2 n4 0 0
+V3 n5 0 0
+V4 i1 0 0.8
+C1 n3 0 500f
+.op
+.control
+run
+
+*dc V4 0 1.8 0.01
+*plot  v(n3)
+print v(n2)
+print v(g2)
+print v(n3)
+print i(vdd)
+print i(V1)
+print i(V2)
+print i(v3)
+.endc
+.end
+```
+
+### Netlist Code Of Differential Amplifier 
+**AC Analysis**
+
+```
+****************** Differntial Amplifier Using PMOS ************************
+******************************* AC ANALYSIS ********************************
+****************** Date : 26/11/2025, Designer: Chandan Shaw  **************
+
+.title AC Analysis Of Differntial Amplifier Using PMOS
+.lib /home/chandanvlsi/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.temp 25
+
+XM1 g1  g1 d  d sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+XM2 n1  g1 d  d sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+XM3 g2  i1  n1  n1  sky130_fd_pr__pfet_01v8_lvt  L=0.35 W=7 m=5
+XM4 n3  i2  n1  n1  sky130_fd_pr__pfet_01v8_lvt  L=0.35 W=7 m=5
+XM5 g2  g2  0  0 sky130_fd_pr__nfet_01v8  L=4 W=2 m=5
+XM6 n3  g2  0  0 sky130_fd_pr__nfet_01v8  L=4 W=2 m=5
+
+Vdd d 0 1.8
+Iref g1 0 50u
+Vn  i1 0 0.8 ac 0.5
+Vp  i2 0 0.8 ac -0.5
+C1 n3 0 500f
+
+.ac dec 10 1 15meg
+.control
+run
+let phase = (180/3.141)*ph(n3)
+let gain = vdb(n3)
+plot gain
+plot phase
+.endc
+.end
+```
+
+### Netlist Code Of Differential Amplifier 
+**TRANSIENT Analysis**
+
+```
+****************** Differntial Amplifier Using PMOS ************************
+*************************** TRANSIENT ANALYSIS *****************************
+****************** Date : 26/11/2025, Designer: Chandan Shaw  **************
+
+.title TRANSIENT Analysis Of Differntial Amplifier Using PMOS
+.lib /home/chandanvlsi/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.temp 25
+
+XM1 g1  g1 d  d sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+XM2 n1  g1 d  d sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+XM3 g2  i1  n1  n1  sky130_fd_pr__pfet_01v8_lvt  L=0.35 W=7 m=5
+XM4 n3  i2  n1  n1  sky130_fd_pr__pfet_01v8_lvt  L=0.35 W=7 m=5
+XM5 g2  g2  0  0 sky130_fd_pr__nfet_01v8  L=4 W=2 m=5
+XM6 n3  g2  0  0 sky130_fd_pr__nfet_01v8  L=4 W=2 m=5
+
+Vdd d 0 1.8
+Vn  i1 0 sin(0.8 1m 1k)
+Vp  i2 0 sin(0.8 1m 1k 0 0 180)
+Iref g1 0 50u
+C1 n3 0 500f
+
+.tran 1u 1000u
+.control
+run
+plot v(i1) v(i2)
+plot v(n3)
+.endc
+.end
 ```
