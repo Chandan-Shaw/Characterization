@@ -1981,3 +1981,539 @@ plot v(n3)
 .endc
 .end
 ```
+
+## 10. Fully Differential Amplifier
+
+### Fully Differential Amplifier using NMOS
+
+### Netlist Code Of Fully Differential Amplifier 
+**DC Analysis**
+
+```
+*********************** Fully Differential Amplifier With Resistive Load **********************
+******************************* DC ANALYSIS **************************
+*********************** Date : 24/11/2025, Designer: Chandan Shaw  ****************************
+
+.title Fully Differential Amplifier With Resistive Load
+
+.lib /home/chandanvlsi/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+
+.global gnd gnd
+.temp 27
+xmn0 Dn0 Dn5 gnd gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=8
+xmn6 Dn5 Dn5 gnd gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=8
+xmn1 Outn In S12 gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=4
+xmn2 Outp In S12 gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=4
+Rld1 Sp3 Outn 8k
+Rld2 Sp4 Outp 8k
+
+Vcm0 S12 Dn0 dc 0
+Vcm3 vdd Sp3 dc 0
+Vcm4 vdd Sp4 dc 0
+Icm5 vdd Dn5 dc 200u
+Cl1 Outn gnd 20p
+Cl2 Outp gnd 20p
+
+Vsup vdd gnd dc 1.8
+Vin In gnd dc 1.2
+
+.dc Vin 0 1.8 0.01
+
+.control
+run
+set color0=white
+plot V(In) V(S12) V(Outn) V(Outp) V(Dn5)
+plot I(Vcm0) I(Vcm3) I(Vcm4)
+.end
+.endc
+```
+
+### Netlist Code Of Fully Differential Amplifier 
+**AC Analysis**
+
+```
+*********************** Fully Dififerential Amplifier With Resistive Load **********************
+******************************* AC ANALYSIS **************************
+*********************** Date : 24/11/2025, Designer: Chandan Shaw  ****************************
+
+.title Fully Differential Amplifier With Resistive Load
+
+.lib /home/chandanvlsi/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+
+.global gnd gnd
+.temp 27
+xmn0 Dn0 Dn5 gnd gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=8
+xmn6 Dn5 Dn5 gnd gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=8
+xmn1 Outn Inp S12 gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=4
+xmn2 Outp Inn S12 gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=4
+Rld1 Sp3 Outn 8k
+Rld2 Sp4 Outp 8k
+
+Vcm0 S12 Dn0 dc 0
+Vcm3 vdd Sp3 dc 0
+Vcm4 vdd Sp4 dc 0
+Icm5 vdd Dn5 dc 200u
+Cl1 Outn gnd 20p
+Cl2 Outp gnd 20p
+
+Vsup vdd gnd dc 1.8
+
+Vinp Inp gnd dc 1.5 ac 0.5
+Vinn Inn gnd dc 1.5 ac -0.5
+
+.ac dec 10 1 10G
+
+.control
+run
+set color0=white
+plot Vdb(Outp)
+plot V(Inp) V(Inn) V(Outp) V(Outn)
+.end
+.endc
+```
+
+### Netlist Code Of Fully Differential Amplifier 
+**TRANSIENT Analysis**
+
+```
+*********************** Fully Dififerential Amplifier With Resistive Load **********************
+******************************* TRANSIENT ANALYSIS **************************
+*********************** Date : 24/11/2025, Designer: Chandan Shaw  ****************************
+
+.title Fully Differential Amplifier With Resistive Load
+.lib /home/chandanvlsi/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.global gnd gnd
+.temp 27
+
+xmn0 Dn0 Dn5 gnd gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=8
+xmn6 Dn5 Dn5 gnd gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=8
+xmn1 Outn Inp S12 gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=4
+xmn2 Outp Inn S12 gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=4
+Rld1 Sp3 Outn 8k
+Rld2 Sp4 Outp 8k
+
+Vcm0 S12 Dn0 dc 0
+Vcm3 vdd Sp3 dc 0
+Vcm4 vdd Sp4 dc 0
+Icm5 vdd Dn5 dc 200u
+Cl1 Outn gnd 20p
+Cl2 Outp gnd 20p
+
+Vsup vdd gnd dc 1.8
+
+Vinp Inp gnd dc 1.5 ac 0.5 sin (1.5 10m 10k)
+Vinn Inn gnd dc 1.5 ac -0.5 sin (1.5 -10m 10k)
+
+.tran 1u 1m
+
+.control
+run
+set color0=white
+plot V(Outp) V(Outn)
+plot V(Inp) V(Inn) V(Outp) V(Outn)
+.end
+.endc
+```
+
+## 11. Fully Differential Op-Amp
+
+Type 1
+
+```
+*************************** NMOS Fully Differential Operational Amplifier *********************
+******************************************* DC Analysis ***************************************
+*********** Date: 05/01/2026, Designer: Chandan Shaw, Silicon University Bhubaneswar ***********
+
+.title NMOS Fully Differential Operational Amplifier
+.lib /home/chandanvlsi/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+
+.global gnd vdd
+.temp 27
+
+** NMOS and PMOS Transistors
+xmn0 Dn0 Dn5 gnd gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=2
+xmn5 Dn5 Dn5 gnd gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=2
+xmn1 Outn In S12 gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=2
+xmn2 Outp In S12 gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=2
+xmp3 Outn Gp34 Sp3 vdd sky130_fd_pr__pfet_01v8_lvt w=5 l=2 m=5
+xmp4 Outn Gp34 Sp4 vdd sky130_fd_pr__pfet_01v8_lvt w=5 l=2 m=5
+
+** Feedback Resistors
+Rgs3 Outn Gp34 100k
+Rgs4 Outp Gp34 100k
+
+** Voltage Source to measure Branch Currents
+Vcm0 S12 Dn0 dc 0
+Vcm3 vdd Sp3 dc 0
+Vcm4 vdd Sp4 dc 0
+
+** Current Source
+Icm5 vdd Dn5 dc 50u
+
+** Load Capacitance
+Cln Outn gnd 10p
+Clp Outp gnd 10p
+
+** Supply Voltage
+Vsup vdd gnd dc 1.8
+
+** Differential Input
+Vin In gnd dc 1.4 ac 1 sin(1.4 1m 10k)
+
+** Simulation Command
+.dc Vin 0 1.8 0.01
+
+** Control Command
+.control
+run
+set color0=white
+plot V(In) V(S12) V(Outn) V(Outp) V(Dn5)
+plot V(Gm34)
+plot I(Vcm0) I(Vcm3) I(Vcm4)
+.end
+.endc
+```
+
+Type 2
+
+```
+**************************** NMOS Fully Differential Operational Amplifier *****************************
+************************* DC Analysis *********************************
+*************** Date: 07/01/2026 , Designer: Chandan Shaw , Silicon University ,Bbhubaneshwar ********************
+
+.title NMOS Fully Differential Operational Amplifier
+
+.lib /home/chandanvlsi/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+
+.global gnd vdd
+.temp 27
+
+** NMOS And PMOS Transistors
+xmn0 Dn0 Dn5 gnd gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=2
+xmn5 Dn5 Dn5 gnd gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=2
+xmn1 Outn In S12 gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=2
+xmn2 Outp In S12 gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=2
+xmp3 Outn Gp34 Sp3 gnd sky130_fd_pr__pfet_01v8_lvt w=5 l=2 m=5
+xmp4 Outp Gp34 Sp4 gnd sky130_fd_pr__pfet_01v8_lvt w=5 l=2 m=5
+
+** Feedback Resistors
+Rn Outn Ravg 10k
+Rp Outp Ravg 10k
+
+** Common Mode Feedback Amplifier
+xmn6 Dn6 Dn5 gnd gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=2
+xmn7 Dn9 Ravg S78 gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=2
+xmn8 Gp34 Ref S78 gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=2
+xmp9 Dn9 Dn9 Sp9 vdd sky130_fd_pr__pfet_01v8_lvt w=5 l=2 m=5
+xmp10 Gp34 Dn9 Sp10 vdd sky130_fd_pr__pfet_01v8_lvt w=5 l=2 m=5
+
+** Voltage Source to measure branch Currents
+Vcm0 S12 Dn0 dc 0
+Vcm3 vdd Sp3 dc 0
+Vcm4 vdd Sp4 dc 0
+Vcm6 S78 Dn6 dc 0
+Vcm9 vdd Sp9 dc 0
+Vcm10 vdd Sp10 dc 0
+
+** Current Source(Mirror Current)
+Icm5 vdd Dn5 dc 50u
+
+** Load Capacitance
+Clp Outp gnd 10p
+Cln Outn gnd 10p
+
+** Supply Voltage
+Vsup vdd gnd dc 1.8
+
+** Reference Voltage
+Vref Ref gnd dc 1.8
+
+** Differential Input
+Vin In gnd dc 1.4
+*Vinn Inn gnd dc 1.4
+
+** Simulation Command
+.dc Vin 0 1.8 0.01
+
+** Control Statement
+.control
+run
+set color0=white
+plot V(In) V(S12) V(S78) V(Outn) V(Outp) V(Dn5)
+plot V(Dp9) V(Gp34) V(Ravg)
+plot I(Vcm0) I(Vcm3) I(Vcm4) I(Vcm6) I(Vcm9) I(Vcm10)
+.end
+.endc
+```
+
+## 12. Two stage Amplifier
+- A two-stage op-amp is one of the most common CMOS amplifier topologies used in analog IC design, especially when you need high gain and reasonable output swing.
+- It’s called “two-stage” because the signal passes through two cascaded gain stages before reaching the output.
+### Structure
+- A typical two-stage op-amp consists of:
+### I.Stage 1 – Differential Amplifier with Active Load
+- Purpose: Provides high input impedance, large differential gain, and converts differential input to a single-ended output.
+- Often implemented with NMOS differential pair and PMOS current-mirror load.
+- This stage sets much of the DC gain.
+### II.Stage 2 – Common-Source Gain Stage
+- Purpose: Further amplifies the single-ended signal from Stage 1 to the final output level.
+- Usually an NMOS common-source transistor with a PMOS current-source load.
+- This stage provides extra gain and helps drive moderate loads.
+### III.Compensation Network
+- Usually a Miller compensation capacitor between Stage-1 output and Stage-2 output.
+- Sometimes includes a series resistor to move the zero to the left half-plane for stability.
+- Ensures adequate phase margin for closed-loop stability.
+### Advantages
+- High DC Gain
+- High Input Impedance
+- Moderate Output Swing
+### Disadvantages
+- Larger Area
+- Stability Issues
+- Slew Rate Limitation
+- More Power Consumption
+- Lower Speed than Single-Stage
+### Summary Table
+| Feature          | Two-Stage Op-Amp                   |
+| ---------------- | ---------------------------------- |
+| **Gain**         | Very high (60–90 dB)               |
+| **Bandwidth**    | Moderate (set by Miller C)         |
+| **Load Drive**   | Moderate (pF range)                |
+| **Complexity**   | Higher than single-stage           |
+| **Stability**    | Requires compensation              |
+
+#### Stability Analysis Without Compensate Capacitor
+```
+*************************** NMOS Two-Stage Operational Amplifier (With Compensative capacitor) ***************************
+******************************************* Stability and Settling Time ANALYSIS *****************************************
+******************************* Date: 23/12/2025 ,Designer: Chandan Shaw ,Silicon University *****************************
+
+.title NMOS Two-Stage Operationational Amplifier
+
+.lib /home/chandanvlsi/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+
+.global gnd vdd
+.temp 27
+
+** NMOS and PMOS Transistors
+xmn0 Dn0 Dn5 gnd gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=2
+xmn5 Dn5 Dn5 gnd gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=2
+xmn1 Dp3 Out S12 gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=2
+xmn2 Out1 Inp S12 gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=2
+xmp3 Dp3 Dp3 Sp3 vdd sky130_fd_pr__pfet_01v8_lvt w=5 l=2 m=5
+xmp4 Out1 Dp3 Sp4 vdd sky130_fd_pr__pfet_01v8_lvt w=5 l=2 m=5
+xmp6 Out out1 Sp6 vdd sky130_fd_pr__pfet_01v8_lvt w=5 l=2 m=80
+xmp7 Out Dn5 gnd gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=16
+
+** Voltage Source to measure Branch Currents
+Vcm0 S12 Dn0 dc 0
+Vcm3 vdd Sp3 dc 0
+Vcm4 vdd Sp4 dc 0
+Vcm6 vdd Sp6 dc 0
+
+** Current Source
+Icm5 vdd Dn5 dc 50u
+
+** Load capacitance
+Cl Out gnd 10p
+Cc Out1 Out 5p
+
+** Supply Voltage
+Vsup vdd gnd dc 1.8
+
+** Differential Input
+Vinp Inp gnd pulse (0 1.2 10n 100p 100p 0.5 1)
+*Vinn Inn gnd dc 1.5 c -0.5 sin(1.5 1m 10k)
+
+** Simultion Command take 0.5u for better and also 5u
+.tran 10p 0.5u
+
+** Control Statement
+.control
+run
+setcolor0=white
+plot V(Inp) V(Out)
+.end
+.endc
+```
+
+#### Stability Analysis Without Compensate Capacitor
+```
+*********************** NMOS Two-Stage Operational Amplifier (Without Compensative Capacitor) ****************************
+******************************************* Stability and Settling Time ANALYSIS *****************************************
+******************************* Date: 23/12/2025 ,Designer: Chandan Shaw ,Silicon University *****************************
+
+.title NMOS Two-Stage Operationational Amplifier
+
+.lib /home/chandanvlsi/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+
+.global gnd vdd
+.temp 27
+
+** NMOS and PMOS Transistors
+xmn0 Dn0 Dn5 gnd gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=2
+xmn5 Dn5 Dn5 gnd gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=2
+xmn1 Dp3 Out S12 gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=2
+xmn2 Out1 Inp S12 gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=2
+xmp3 Dp3 Dp3 Sp3 vdd sky130_fd_pr__pfet_01v8_lvt w=5 l=2 m=5
+xmp4 Out1 Dp3 Sp4 vdd sky130_fd_pr__pfet_01v8_lvt w=5 l=2 m=5
+xmp6 Out out1 Sp6 vdd sky130_fd_pr__pfet_01v8_lvt w=5 l=2 m=80
+xmp7 Out Dn5 gnd gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=16
+
+** Voltage Source to measure Branch Currents
+Vcm0 S12 Dn0 dc 0
+Vcm3 vdd Sp3 dc 0
+Vcm4 vdd Sp4 dc 0
+Vcm6 vdd Sp6 dc 0
+
+** Current Source
+Icm5 vdd Dn5 dc 50u
+
+** Load capacitance
+Cl Out gnd 10p
+*Cc Out1 Out 5p
+
+** Supply Voltage
+Vsup vdd gnd dc 1.8
+
+** Differential Input
+Vinp Inp gnd pulse (0 1.2 10n 100p 100p 0.5 1)
+*Vinn Inn gnd dc 1.5 c -0.5 sin(1.5 1m 10k)
+
+** Simultion Command
+.tran 10p 0.5u
+
+** Control Statement
+.control
+run
+setcolor0=white
+plot V(Inp) V(Out)
+.end
+.endc
+```
+
+# 13. Balanced Amplifier
+- A balanced amplifier is an amplifier configuration designed so that its output (or input) is symmetrical with respect to a reference point.
+### Why Balanced?
+- The signals are balanced in amplitude and anti-phase (180° apart).
+- This symmetry provides better common-mode noise rejection — any interference picked up equally on both lines is canceled out when taking the difference.
+### Advantages
+- High CMRR
+- Lower distortion
+### Disadvantages
+- More complex design
+- Consumes more power than a single-ended stage.
+
+## 13.1 Balanced Amplifier using NMOS
+
+**DC Analysis**
+
+```
+***************************** Balanced Amplifier ******************************************
+***************************************** DC ANALYSIS *************************************
+************* Date: 27/12/2025 , Designer: Chandan Shaw , Silicon University **************
+
+.title Balanced Amplifier
+.lib /home/chandanvlsi/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.global vdd gnd
+.temp 27
+
+** For NMOS
+xmn0 Dn1 Dn9 gnd gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=2
+xmn1 Dn2 In Dn1 gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=8
+xmn2 Dn3 In Dn1 gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=8
+xmn7 Dn7 Dn7 gnd gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=16
+xmn8 Vout Dn7 gnd gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=16
+xmn9 Dn9 Dn9 gnd gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=2
+
+** For PMOS
+xmp3 Dn2 Dn2 Sp3 vdd sky130_fd_pr__pfet_01v8_lvt w=5 l=2 m=5
+xmp4 Dn3 Dn3 vdd vdd sky130_fd_pr__pfet_01v8_lvt w=5 l=2 m=5
+xmp5 Dn7 Dn2 Sp4 vdd sky130_fd_pr__pfet_01v8_lvt w=5 l=2 m=80
+xmp6 vout Dn3 Sp5 vdd sky130_fd_pr__pfet_01v8_lvt w=5 l=2 m=80
+
+** Load Capacitance
+Cl vout gnd 10p
+
+** Current Supply
+Isup vdd Dn9 dc 50u
+
+
+** Voltage Source
+Vcm0 vdd Sp3 dc 0
+Vcm1 vdd Sp4 dc 0
+Vcm2 vdd Sp5 dc 0
+
+** Voltage Supply
+Vsup vdd gnd dc 1.8
+
+Vin In gnd dc 1.2
+
+** Simulation Command
+.dc Vin 0 1.8 0.01
+
+** Control Command
+.control
+run
+
+plot V(In) V(Dn7) V(Dn3) V(Dn2) V(Dn1)
+plot I(Vcm0) I(Vcm1) I(Vcm2)
+.end
+.endc
+```
+
+**AC Analysis**
+
+```
+***************************** Balanced Amplifier ******************************************
+***************************************** AC ANALYSIS *************************************
+************* Date: 27/12/2025 , Designer: Chandan Shaw , Silicon University **************
+
+.title Balanced Amplifier
+.lib /home/chandanvlsi/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.global vdd gnd
+.temp 27
+
+** For NMOS
+xmn0 Dn1 Dn9 gnd gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=2
+xmn1 Dn2 In Dn1 gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=8
+xmn2 Dn3 In Dn1 gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=8
+xmn7 Dn7 Dn7 gnd gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=16
+xmn8 Vout Dn7 gnd gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=16
+xmn9 Dn9 Dn9 gnd gnd sky130_fd_pr__nfet_01v8 w=5 l=2 m=2
+
+** For PMOS
+xmp3 Dn2 Dn2 Sp3 vdd sky130_fd_pr__pfet_01v8_lvt w=5 l=2 m=5
+xmp4 Dn3 Dn3 vdd vdd sky130_fd_pr__pfet_01v8_lvt w=5 l=2 m=5
+xmp5 Dn7 Dn2 Sp4 vdd sky130_fd_pr__pfet_01v8_lvt w=5 l=2 m=80
+xmp6 vout Dn3 Sp5 vdd sky130_fd_pr__pfet_01v8_lvt w=5 l=2 m=80
+
+** Load Capacitance
+Cl vout gnd 10p
+
+** Current Supply
+Isup vdd Dn9 dc 50u
+
+
+** Voltage Source
+Vcm0 vdd Sp3 dc 0
+Vcm1 vdd Sp4 dc 0
+Vcm2 vdd Sp5 dc 0
+
+** Voltage Supply
+Vsup vdd gnd dc 1.8
+
+Vin In gnd dc 1.4 ac 0.5 sin(1.4 1m 10k)
+
+** Simulation Command
+.ac dec 10 1 10Meg
+
+** Control Command
+.control
+run
+
+plot db(vout)
+plot 180*cph(vout)/pi
+.end
+.endc
+```
