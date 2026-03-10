@@ -1182,7 +1182,9 @@ plot ph(v(out)/v(in))
 .endc
 ```
 
-![Diagram](
+![Diagram](https://github.com/Chandan-Shaw/Characterization/blob/main/CS_Amp_resi_Load_ac_Simulation.png)
+![Diagram](https://github.com/Chandan-Shaw/Characterization/blob/main/CS_Amp_resis_Load_ac_Simulation.png)
+
 ### Netlist Code Of Common Source Amplifier Using NMOS and PMOS Current Source Load
 
 **DC Analysis**
@@ -1222,6 +1224,8 @@ print abs(v(Dp2))
 .end
 .endc
 ```
+![Diagram](
+
 ### Netlist Code Of Common Source Amplifier Using NMOS and PMOS Current Source Load
 
 **AC Analysis**
