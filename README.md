@@ -1001,6 +1001,9 @@ plot 1/deriv(i(Vcm2))
 .end
 .endc
 ```
+![Diagram](https://github.com/Chandan-Shaw/Characterization/blob/main/Cascode_Current_Mirror_dc_Simulation.png)
+![Diagram](https://github.com/Chandan-Shaw/Characterization/blob/main/Cascode_Current_Mirror_dc1_Simulation.png)
+![Diagram](https://github.com/Chandan-Shaw/Characterization/blob/main/Cascode_Current_Mirror_dc2_Simulation.png)
 
 ### DC Analysis
 
@@ -1044,9 +1047,9 @@ plot deriv(v(Dn3))
 
 ### DC Analysis
  ```
-********************************* Wide Swing Cascode Current Mirror Using NMOS *********************************
-************************ DC ANALYSIS ***************************
-************* Date: 11/01/2026 , Designer: Chandan Shaw , Silicon University Bhubaneshwar ********************
+*************************** Wide Swing Cascode Current Mirror Using NMOS ****************************
+************************************************* DC ANALYSIS ****************************************
+************ Date: 11/01/2026 , Designer: Chandan Shaw , Silicon University Bhubaneshwar *************
 
 .title Wide Swing Cascode Current Mirror Using N Channel MOSFET
 .lib /home/chandanvlsi/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt
@@ -2462,6 +2465,9 @@ plot I(Vcm0) I(Vcm1) I(Vcm2)
 .endc
 ```
 
+![Diagram](https://github.com/Chandan-Shaw/Characterization/blob/main/Balanced_Amp_dc_Simulation.png)
+![Diagram](https://github.com/Chandan-Shaw/Characterization/blob/main/Balanced_Ampl_dc_Simulation.png)
+
 **AC Analysis**
 
 ```
@@ -2517,3 +2523,5 @@ plot 180*cph(vout)/pi
 .end
 .endc
 ```
+![Diagram](https://github.com/Chandan-Shaw/Characterization/blob/main/Balanced_Amp_ac_Simulation.png)
+![Diagram](https://github.com/Chandan-Shaw/Characterization/blob/main/Balanced_Ampl_ac_Simulation.png)
