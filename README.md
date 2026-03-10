@@ -1129,7 +1129,9 @@ plot v(Dn1) v(Gn) v(Dn2) v(Rt1)
 .end
 .endc
 ```
-![Diagram](
+![Diagram](https://github.com/Chandan-Shaw/Characterization/blob/main/SB_WS_Cascode_dc_Simulation.png)
+![Diagram](https://github.com/Chandan-Shaw/Characterization/blob/main/SB_WS_Cascode_dc1_Simulation.png)
+![Diagram](https://github.com/Chandan-Shaw/Characterization/blob/main/SB_WS_Cascode_dc2_Simulation.png)
 
 ## 7. Single Stage Amplifiers
 - A single-stage amplifier is the simplest form of amplifier — it uses just one active device (like a BJT, MOSFET, or JFET) along with biasing and load components to amplify a weak input signal into a stronger output signal.
@@ -1149,10 +1151,10 @@ plot v(Dn1) v(Gn) v(Dn2) v(Rt1)
 ## 7.1 Common Source Amplifier using NMOS
 
 ### Netlist Code Of Common Source Amplifier using NMOS With Resistive Load
-**DC Analysis**
+**AC Analysis**
 ```
 ************* Common Source Amplifier With N-Channel MOSFET and Resistive Load ****************
-***************************************** DC ANALYSIS *****************************************
+***************************************** AC ANALYSIS *****************************************
 *********************** Date : 30/10/2025, Designer: Chandan Shaw  ****************************
 
 .title Common Source Amplifier With N-Channel MOSFET and Resistive Load
@@ -1174,13 +1176,13 @@ Vin in gnd dc 0.9 ac 1 sin(0.9 1m 100k)
 .control
 run
 set color0=white
-plot v(out)
 plot v(in) v(out)
-plot db20(v(out)/v(in))
 plot ph(v(out)/v(in))
 .end
 .endc
 ```
+
+![Diagram](
 ### Netlist Code Of Common Source Amplifier Using NMOS and PMOS Current Source Load
 
 **DC Analysis**
