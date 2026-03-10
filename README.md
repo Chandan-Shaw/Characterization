@@ -1224,7 +1224,8 @@ print abs(v(Dp2))
 .end
 .endc
 ```
-![Diagram](
+![Diagram](https://github.com/Chandan-Shaw/Characterization/blob/main/CS_Amp_i_load_dc_Simulation.png)
+![Diagram](https://github.com/Chandan-Shaw/Characterization/blob/main/CS_Amp_i_load_dc_Simulations.png)
 
 ### Netlist Code Of Common Source Amplifier Using NMOS and PMOS Current Source Load
 
@@ -1268,6 +1269,10 @@ print vdb(out)
 .end
 .endc
 ```
+![Diagram](https://github.com/Chandan-Shaw/Characterization/blob/main/CS_Amp_i_load_ac_Simulation.png)
+![Diagram](https://github.com/Chandan-Shaw/Characterization/blob/main/CS_Amp_i_load_ac1_Simulation.png)
+![Diagram](https://github.com/Chandan-Shaw/Characterization/blob/main/CS_Amp_i_load_ac2_Simulation.png)
+![Diagram](https://github.com/Chandan-Shaw/Characterization/blob/main/CS_Amp_i_load_ac3_Simulation.png)
 
 ### Netlist Code Of Common Source Amplifier Using NMOS and PMOS Current Source Load
 
