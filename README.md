@@ -1088,6 +1088,9 @@ plot v(Dn5) v(Dn1) v(Gn) v(Dn2)
 .end
 .endc
 ```
+![Diagram](https://github.com/Chandan-Shaw/Characterization/blob/main/WS_Cascode_dc_Simulation.png)
+![Diagram](https://github.com/Chandan-Shaw/Characterization/blob/main/WS_Cascode_dc1_Simulation.png)
+![Diagram](https://github.com/Chandan-Shaw/Characterization/blob/main/WS_Cascode_dc2_Simulation.png)
 
 ## Self Baised Wide Swing Cascode Current Mirror
 
@@ -1126,6 +1129,7 @@ plot v(Dn1) v(Gn) v(Dn2) v(Rt1)
 .end
 .endc
 ```
+![Diagram](
 
 ## 7. Single Stage Amplifiers
 - A single-stage amplifier is the simplest form of amplifier — it uses just one active device (like a BJT, MOSFET, or JFET) along with biasing and load components to amplify a weak input signal into a stronger output signal.
