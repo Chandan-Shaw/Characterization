@@ -1042,6 +1042,10 @@ plot deriv(v(Dn3))
 .end
 .endc
 ```
+![Diagram](https://github.com/Chandan-Shaw/Characterization/blob/main/Cascode_Current_dc_Simulation.png)
+![Diagram](https://github.com/Chandan-Shaw/Characterization/blob/main/Cascode_Current_dc1_Simulation.png)
+![Diagram](https://github.com/Chandan-Shaw/Characterization/blob/main/Cascode_Current_dc2_Simulation.png)
+![Diagram](https://github.com/Chandan-Shaw/Characterization/blob/main/Cascode_Current_dc3_Simulation.png)
 
 ## Wide Swing Cascode Current Mirror
 
