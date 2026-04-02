@@ -2357,6 +2357,7 @@ plot V(Inp) V(Out)
 .end
 .endc
 ```
+![Diagram](https://github.com/Chandan-Shaw/Characterization/blob/main/Stab_Without_Comp_Cap.png)
 
 #### Stability Analysis With Compensate Capacitor
 ```
@@ -2412,7 +2413,7 @@ plot V(Inp) V(Out)
 .end
 .endc
 ```
-
+![Diagram](https://github.com/Chandan-Shaw/Characterization/blob/main/Stab_With_Comp_Cap.png)
 # 13. Balanced Amplifier
 - A balanced amplifier is an amplifier configuration designed so that its output (or input) is symmetrical with respect to a reference point.
 ### Why Balanced?
