@@ -2338,7 +2338,6 @@ Icm5 vdd Dn5 dc 50u
 
 ** Load capacitance
 Cl Out gnd 10p
-Cc Out1 Out 5p
 
 ** Supply Voltage
 Vsup vdd gnd dc 1.8
@@ -2359,7 +2358,7 @@ plot V(Inp) V(Out)
 .endc
 ```
 
-#### Stability Analysis Without Compensate Capacitor
+#### Stability Analysis With Compensate Capacitor
 ```
 *********************** NMOS Two-Stage Operational Amplifier (Without Compensative Capacitor) ****************************
 ******************************************* Stability and Settling Time ANALYSIS *****************************************
@@ -2393,7 +2392,7 @@ Icm5 vdd Dn5 dc 50u
 
 ** Load capacitance
 Cl Out gnd 10p
-*Cc Out1 Out 5p
+Cc Out1 Out 5p
 
 ** Supply Voltage
 Vsup vdd gnd dc 1.8
